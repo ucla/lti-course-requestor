@@ -21,7 +21,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader', 'babel-loader', 'themeable-css-loader', 'postcss-loader'],
       },
       {
         test: /\.(png|woff|woff2|eot|ttf|svg)$/,
@@ -39,6 +39,9 @@ module.exports = {
     proxy: {
       '/api': 'http://localhost:8080',
     },
+  },
+  resolveLoader: {
+    alias: require('@instructure/ui-webpack-config').resolveLoader.alias
   },
   plugins: [
     new CleanWebpackPlugin([outputDirectory]),
