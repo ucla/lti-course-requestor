@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 // before mounting your React application:
-import theme from '@instructure/canvas-high-contrast-theme';
+import theme from '@instructure/canvas-theme';
 import './app.css';
 
 import { View } from '@instructure/ui-view';
@@ -13,6 +13,8 @@ import { NumberInput } from '@instructure/ui-number-input';
 import { Billboard } from '@instructure/ui-billboard';
 import { IconUserLine, IconCheckLine } from '@instructure/ui-icons';
 import { Table } from '@instructure/ui-table';
+
+import CourseRequestForm from '../CourseRequestForm';
 
 theme.use({ overrides: { colors: { brand: 'red' } } });
 
@@ -114,13 +116,8 @@ const UserCenter = ({ members, retrieveMembers, showUsers }) => {
   React.useEffect(retrieveMembers, []);
 
   return (
-    <View as="div" display="flex" margin="auto" background="brand">
-      <UserList
-        members={members}
-        chooseMember={chooseMember}
-        showUsers={showUsers}
-      />
-      <UserPanel chosenMember={chosenMember} />
+    <View as="div" margin="auto">
+      <CourseRequestForm courses={[]}></CourseRequestForm>
     </View>
   );
 };
