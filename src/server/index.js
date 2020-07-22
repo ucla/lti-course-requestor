@@ -62,6 +62,9 @@ lti.app.post('/api/grades', (req, res) => {
   }
 });
 
+/**
+ *
+ */
 async function setup() {
   // Deploying provider, connecting to the database and starting express server.
   await lti.deploy({ port: 8080 });

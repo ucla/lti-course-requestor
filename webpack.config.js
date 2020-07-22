@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UiWebPackConfig = require('@instructure/ui-webpack-config');
 
 const outputDirectory = 'dist';
 
@@ -21,7 +22,13 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader', 'babel-loader', 'themeable-css-loader', 'postcss-loader'],
+        use: [
+          'style-loader',
+          'css-loader',
+          'babel-loader',
+          'themeable-css-loader',
+          'postcss-loader',
+        ],
       },
       {
         test: /\.(png|woff|woff2|eot|ttf|svg)$/,
@@ -41,7 +48,7 @@ module.exports = {
     },
   },
   resolveLoader: {
-    alias: require('@instructure/ui-webpack-config').resolveLoader.alias
+    alias: UiWebPackConfig.resolveLoader.alias,
   },
   plugins: [
     new CleanWebpackPlugin([outputDirectory]),
