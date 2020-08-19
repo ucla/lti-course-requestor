@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import axios from 'axios';
-// before mounting your React application:
+// Before mounting your React application:
 import theme from '@instructure/canvas-theme';
 import './app.css';
 

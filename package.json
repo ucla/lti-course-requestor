@@ -17,6 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "@instructure/canvas-theme": "^7.1.1",
+    "@instructure/ui-babel-preset": "^7.1.3",
     "@instructure/ui-billboard": "^7.1.1",
     "@instructure/ui-buttons": "^7.1.1",
     "@instructure/ui-checkbox": "^7.1.1",
