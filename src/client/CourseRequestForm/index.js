@@ -16,25 +16,26 @@ theme.use();
 
 const CourseRequestForm = ({ courses }) => {
   const [emailToggleValue, toggleEmail] = useState(false);
-  const [coursesData, setCoursesData] = React.useState(courses);
+  const [coursesData, setCoursesData] = useState(courses);
   const handleEmailToggle = () => {
     toggleEmail(!emailToggleValue);
   };
-  const [classTypeFilter, setClassTypeFilter] = React.useState([
+  const [classTypeFilter, setClassTypeFilter] = useState([
     'ugrad',
     'grad',
     'tut',
   ]);
   const handleClassTypeToggle = value => {
-    const ugradFlag =
-      (value.includes('ugrad') && !classTypeFilter.includes('ugrad')) ||
-      (!value.includes('ugrad') && classTypeFilter.includes('ugrad'));
-    const gradFlag =
-      (value.includes('grad') && !classTypeFilter.includes('grad')) ||
-      (!value.includes('grad') && classTypeFilter.includes('grad'));
-    const tutFlag =
-      (value.includes('tut') && !classTypeFilter.includes('tut')) ||
-      (!value.includes('tut') && classTypeFilter.includes('tut'));
+    // These need to be XOR because we want to change the to-be-built status ONLY IF the status of that particular type of class changed
+    const ugradFlag = value.includes('ugrad')
+      ? !classTypeFilter.includes('ugrad')
+      : classTypeFilter.includes('ugrad');
+    const gradFlag = value.includes('grad')
+      ? !classTypeFilter.includes('grad')
+      : classTypeFilter.includes('grad');
+    const tutFlag = value.includes('tut')
+      ? !classTypeFilter.includes('tut')
+      : classTypeFilter.includes('tut');
     coursesData.forEach((element, i) => {
       if (ugradFlag && coursesData[i].classType === 'ugrad') {
         coursesData[i].toBeBuilt =
@@ -219,6 +220,20 @@ const CourseRequestForm = ({ courses }) => {
       </Table.Cell>
     </Table.Row>
   ));
+  const courseRequestFormHeaderList = [
+    'Request ID',
+    'Term',
+    'Class ID',
+    'Department',
+    'Course',
+    'Crosslisted Class IDs',
+    'Time Requested',
+    'Requestor Email',
+    'Status',
+    'Email Instructors',
+    'Send Class Link to MyUCLA',
+    'To Be Built',
+  ];
   return (
     <FormFieldGroup label="" description="">
       <TextInput
@@ -246,54 +261,11 @@ const CourseRequestForm = ({ courses }) => {
       <Table caption="">
         <Table.Head>
           <Table.Row>
-            <Table.ColHeader theme={constants.courseListHeader} id="requestID">
-              Request ID
-            </Table.ColHeader>
-            <Table.ColHeader theme={constants.courseListHeader} id="term">
-              Term
-            </Table.ColHeader>
-            <Table.ColHeader theme={constants.courseListHeader} id="classID">
-              Class ID
-            </Table.ColHeader>
-            <Table.ColHeader theme={constants.courseListHeader} id="department">
-              Department
-            </Table.ColHeader>
-            <Table.ColHeader theme={constants.courseListHeader} id="course">
-              Course
-            </Table.ColHeader>
-            <Table.ColHeader
-              theme={constants.courseListHeader}
-              id="crosslistedclassIDs"
-            >
-              Crosslisted Class IDs
-            </Table.ColHeader>
-            <Table.ColHeader
-              theme={constants.courseListHeader}
-              id="timerequested"
-            >
-              Time requested
-            </Table.ColHeader>
-            <Table.ColHeader
-              theme={constants.courseListHeader}
-              id="requestoremail"
-            >
-              Requestor Email
-            </Table.ColHeader>
-            <Table.ColHeader theme={constants.courseListHeader} id="status">
-              Status
-            </Table.ColHeader>
-            <Table.ColHeader
-              theme={constants.courseListHeader}
-              id="emailinstructors"
-            >
-              Email instructors
-            </Table.ColHeader>
-            <Table.ColHeader theme={constants.courseListHeader} id="sendurl">
-              Send class link to MyUCLA
-            </Table.ColHeader>
-            <Table.ColHeader theme={constants.courseListHeader} id="tobebuilt">
-              To be built
-            </Table.ColHeader>
+            {courseRequestFormHeaderList.map(colname => (
+              <Table.ColHeader theme={constants.courseListHeader}>
+                {colname}
+              </Table.ColHeader>
+            ))}
           </Table.Row>
         </Table.Head>
         <Table.Body>{courseListings}</Table.Body>

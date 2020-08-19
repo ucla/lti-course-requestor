@@ -63,7 +63,9 @@ lti.app.post('/api/grades', (req, res) => {
 });
 
 /**
- *
+ * Sets up the LTI tool's database and starts the express server.
+ * Provides additional functionality with registering the platform
+ * and providing the public key to connect the LTI tool to moodle.
  */
 async function setup() {
   // Deploying provider, connecting to the database and starting express server.
