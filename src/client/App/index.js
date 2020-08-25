@@ -15,6 +15,7 @@ import { IconUserLine, IconCheckLine } from '@instructure/ui-icons';
 import { Table } from '@instructure/ui-table';
 
 import CourseRequestForm from '../CourseRequestForm';
+import IndexForm from '../indexform';
 
 theme.use({ overrides: { colors: { brand: 'red' } } });
 
@@ -82,7 +83,7 @@ const App = () => {
         />
         <Billboard
           margin="auto"
-          message="Grading Center"
+          message="Index Form"
           onClick={() => {
             showGrades(true);
           }}
@@ -101,13 +102,7 @@ const App = () => {
       />
     );
   }
-  return (
-    <GradingCenter
-      showGrades={showGrades}
-      setLtikPromise={setLtikPromise}
-      members={members}
-    />
-  );
+  return <IndexForm />;
 };
 
 const UserCenter = ({ members, retrieveMembers, showUsers }) => {

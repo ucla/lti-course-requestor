@@ -98,6 +98,8 @@ async function call(params) {
     }
 
     params.baseURL = process.env.REG_WS_API_URL;
+    console.log('registrar called with token ------------!');
+    console.log(token);
 
     const response = await axios(params);
     registrarDebug(`call returning with ${response.data}`);
