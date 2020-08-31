@@ -1990,14 +1990,14 @@
     prop-types "^15"
 
 "@instructure/ui-text@^7.1.1":
-  version "7.1.1"
-  resolved "https://registry.yarnpkg.com/@instructure/ui-text/-/ui-text-7.1.1.tgz#9f8d155337633cd5d56ac2ed585f9934da62a77d"
-  integrity sha512-K4qxcI+x/5qeNLWmXXzG0pc195py8/+5/J4kM4wwCiTyZSjgHYR+2VonNEN7NVlQbqmeB419ws3w/Tby2Ij+2w==
+  version "7.1.3"
+  resolved "https://registry.yarnpkg.com/@instructure/ui-text/-/ui-text-7.1.3.tgz#d46f0a0a6a5b9fb6afc18781ddd4cf1827b86b46"
+  integrity sha512-ComHoDlETPaY+A8DaAUB+OcJyVfKdg6fefA9EIo9mjcxejHNj/rhW7Zbw7Z3B/5d9JQaXbEEQzuHPYcJqSMgjA==
   dependencies:
     "@babel/runtime" "^7.9.2"
-    "@instructure/console" "^7.1.1"
-    "@instructure/ui-react-utils" "^7.1.1"
-    "@instructure/ui-themeable" "^7.1.1"
+    "@instructure/console" "^7.1.3"
+    "@instructure/ui-react-utils" "^7.1.3"
+    "@instructure/ui-themeable" "^7.1.3"
     classnames "^2"
     prop-types "^15"
 
