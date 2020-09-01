@@ -1748,23 +1748,6 @@
     classnames "^2"
     prop-types "^15"
 
-"@instructure/ui-tag@^7.1.1":
-  version "7.1.1"
-  resolved "https://registry.npmjs.org/@instructure/ui-tag/-/ui-tag-7.1.1.tgz#97939647f49fe7742972386cfa66f2a0ce779549"
-  integrity sha512-k38ULEYU76Bw3zlZnNfZUInaZ6N2I1ffAV9MmyqHFLgPXN4FnGCX/d0YjFJzpw9rJOTQsrwZ4FzmCLY+ab2i4w==
-  dependencies:
-    "@babel/runtime" "^7.9.2"
-    "@instructure/console" "^7.1.1"
-    "@instructure/ui-color-utils" "^7.1.1"
-    "@instructure/ui-dom-utils" "^7.1.1"
-    "@instructure/ui-icons" "^7.1.1"
-    "@instructure/ui-react-utils" "^7.1.1"
-    "@instructure/ui-testable" "^7.1.1"
-    "@instructure/ui-themeable" "^7.1.1"
-    "@instructure/ui-view" "^7.1.1"
-    classnames "^2"
-    prop-types "^15"
-
 "@instructure/ui-tag@^7.1.3":
   version "7.1.3"
   resolved "https://registry.yarnpkg.com/@instructure/ui-tag/-/ui-tag-7.1.3.tgz#f98b4bfdb71b21176b114f05557363fe499eceb6"
@@ -1790,27 +1773,7 @@
     "@babel/runtime" "^7.9.2"
     "@instructure/ui-decorator" "^7.1.3"
 
-"@instructure/ui-text-input@^7.1.1":
-  version "7.1.1"
-  resolved "https://registry.yarnpkg.com/@instructure/ui-text-input/-/ui-text-input-7.1.1.tgz#74e91f57b7d1adb76a205d490987e7571b6ab00a"
-  integrity sha512-RdciW+XYF/ykdgfPzrQ2dRFyUtn8NBedIhn+JSuECdpGK7sSeLTaN2/tyXFZqqH71fuVD4qLPSatQm6XmXwSLw==
-  dependencies:
-    "@babel/runtime" "^7.9.2"
-    "@instructure/ui-dom-utils" "^7.1.1"
-    "@instructure/ui-flex" "^7.1.1"
-    "@instructure/ui-form-field" "^7.1.1"
-    "@instructure/ui-icons" "^7.1.1"
-    "@instructure/ui-prop-types" "^7.1.1"
-    "@instructure/ui-react-utils" "^7.1.1"
-    "@instructure/ui-tag" "^7.1.1"
-    "@instructure/ui-testable" "^7.1.1"
-    "@instructure/ui-themeable" "^7.1.1"
-    "@instructure/ui-utils" "^7.1.1"
-    "@instructure/uid" "^7.1.1"
-    classnames "^2"
-    prop-types "^15"
-
-"@instructure/ui-text-input@^7.1.3":
+"@instructure/ui-text-input@^7.1.1", "@instructure/ui-text-input@^7.1.3":
   version "7.1.3"
   resolved "https://registry.yarnpkg.com/@instructure/ui-text-input/-/ui-text-input-7.1.3.tgz#fa14b7e7597b5547a4eb3cb2d08ee213e4a99dc4"
   integrity sha512-CgwmIgmukM0SXHy3ghLHQg2KLv0rXCmjFsrOugcvh4jgeThEkTfQ4qqfI9n1zW1IQ0c1Fe3JnGkxSo1Jk/pHsQ==
