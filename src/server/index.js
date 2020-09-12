@@ -2,7 +2,7 @@ require('dotenv').config();
 const path = require('path');
 
 // Requiring LTIJS provider
-const Lti = require('ltijs').Provider;
+const lti = require('ltijs').Provider;
 
 // Creating a provider instance
 let options = {};
@@ -12,7 +12,7 @@ if (process.env.MODE === 'production') {
     cookies: { secure: false },
   };
 }
-const lti = new Lti(
+lti.setup(
   process.env.LTI_KEY,
   // Setting up database configurations
   {
@@ -23,7 +23,7 @@ const lti = new Lti(
 );
 
 // When receiving successful LTI launch redirects to app.
-lti.onConnect((token, req, res) => {
+lti.onConnect((context, req, res) => {
   if (process.env.MODE === 'production') {
     return res.sendFile(path.join(__dirname, '../../dist/index.html'));
   }
@@ -34,7 +34,7 @@ lti.onConnect((token, req, res) => {
 
 // Names and Roles route.
 lti.app.get('/api/members', (req, res) => {
-  lti.NamesAndRoles.getMembers(res.locals.token)
+  lti.NamesAndRoles.getMembers(res.locals.context)
     .then(members => {
       console.log(members);
       res.send(members.members);
@@ -44,7 +44,7 @@ lti.app.get('/api/members', (req, res) => {
 
 // Grades routes.
 lti.app.get('/api/grades', (req, res) => {
-  lti.Grade.result(res.locals.token)
+  lti.Grade.result(res.locals.context)
     .then(grades => res.status(200).send(grades))
     .catch(err => {
       console.log(err);
@@ -54,7 +54,7 @@ lti.app.get('/api/grades', (req, res) => {
 
 lti.app.post('/api/grades', (req, res) => {
   try {
-    lti.Grade.ScorePublish(res.locals.token, req.body);
+    lti.Grade.ScorePublish(res.locals.context, req.body);
     return res.status(200).send(req.body);
   } catch (err) {
     console.log(err);
@@ -85,7 +85,10 @@ async function setup() {
   });
 
   // Get the public key generated for that platform.
-  const plat = await lti.getPlatform(process.env.PLATFORM_URL);
+  const plat = await lti.getPlatform(
+    process.env.PLATFORM_URL,
+    process.env.PLATFORM_CLIENTID
+  );
   console.log(await plat.platformPublicKey());
 }
 
