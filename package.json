@@ -41,7 +41,7 @@
     "dotenv": "^8.2.0",
     "eslint-plugin-jsdoc": "^30.4.2",
     "express": "^4.16.3",
-    "ltijs": "^5.2.1",
+    "ltijs": "^5.3.3",
     "react": "^16.5.2",
     "react-dom": "^16.5.2"
   },
