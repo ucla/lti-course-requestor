@@ -28,7 +28,7 @@
     "@instructure/ui-icons": "^7.1.1",
     "@instructure/ui-number-input": "^7.1.1",
     "@instructure/ui-postcss-config": "^7.1.1",
-    "@instructure/ui-table": "^7.1.1",
+    "@instructure/ui-table": "^7.1.4",
     "@instructure/ui-text": "^7.1.1",
     "@instructure/ui-text-input": "^7.1.1",
     "@instructure/ui-themeable": "^7.1.1",
