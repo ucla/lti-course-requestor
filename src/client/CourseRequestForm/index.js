@@ -25,7 +25,7 @@ const CourseRequestForm = ({ courses }) => {
     'grad',
     'tut',
   ]);
-  const handleClassTypeToggle = value => {
+  const handleClassTypeToggle = (value) => {
     // These need to be XOR because we want to change the to-be-built status ONLY IF the status of that particular type of class changed
     const ugradFlag = value.includes('ugrad')
       ? !classTypeFilter.includes('ugrad')
@@ -59,7 +59,7 @@ const CourseRequestForm = ({ courses }) => {
           size="small"
           label={`${term}-${courseInfo.classID} (${courseInfo.subjectAreaCode} ${courseInfo.courseCatalogNumberDisplay}-${courseInfo.classNumber})`}
           defaultChecked
-        ></Checkbox>
+        />
       ));
     }
     return null;
@@ -81,7 +81,7 @@ const CourseRequestForm = ({ courses }) => {
     tut: constants.tutRow,
     none: constants.unselectedRow,
   };
-  const toggleToBeBuilt = index => {
+  const toggleToBeBuilt = (index) => {
     coursesData[index].toBeBuilt = !coursesData[index].toBeBuilt;
     setCoursesData(coursesData);
   };
@@ -143,7 +143,7 @@ const CourseRequestForm = ({ courses }) => {
         <CrossListings
           term={course.offeredTermCode}
           courseInfoList={course.crosslistedCourses}
-        ></CrossListings>
+        />
         <TextInput width="200px" renderLabel="" />
         <Button>Add additional Class ID</Button>
       </Table.Cell>
@@ -183,9 +183,7 @@ const CourseRequestForm = ({ courses }) => {
       >
         <Flex justifyItems="center">
           <Flex.Item>
-            <SettingCheckbox
-              isChecked={course.emailInstructors}
-            ></SettingCheckbox>
+            <SettingCheckbox isChecked={course.emailInstructors} />
           </Flex.Item>
         </Flex>
       </Table.Cell>
@@ -198,7 +196,7 @@ const CourseRequestForm = ({ courses }) => {
       >
         <Flex justifyItems="center">
           <Flex.Item>
-            <SettingCheckbox isChecked={course.sendUrl}></SettingCheckbox>
+            <SettingCheckbox isChecked={course.sendUrl} />
           </Flex.Item>
         </Flex>
       </Table.Cell>
@@ -214,7 +212,7 @@ const CourseRequestForm = ({ courses }) => {
             <SettingCheckbox
               isChecked={course.toBeBuilt}
               onChangeCallback={() => toggleToBeBuilt(index)}
-            ></SettingCheckbox>
+            />
           </Flex.Item>
         </Flex>
       </Table.Cell>
@@ -252,7 +250,7 @@ const CourseRequestForm = ({ courses }) => {
         defaultValue={classTypeFilter}
         name="buildfilters"
         size="small"
-        onChange={value => handleClassTypeToggle(value)}
+        onChange={(value) => handleClassTypeToggle(value)}
       >
         <Checkbox label="ugrad" value="ugrad" />
         <Checkbox label="grad" value="grad" />
@@ -261,7 +259,7 @@ const CourseRequestForm = ({ courses }) => {
       <Table caption="">
         <Table.Head>
           <Table.Row>
-            {courseRequestFormHeaderList.map(colname => (
+            {courseRequestFormHeaderList.map((colname) => (
               <Table.ColHeader theme={constants.courseListHeader}>
                 {colname}
               </Table.ColHeader>

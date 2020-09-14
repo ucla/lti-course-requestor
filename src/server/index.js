@@ -35,18 +35,18 @@ lti.onConnect((context, req, res) => {
 // Names and Roles route.
 lti.app.get('/api/members', (req, res) => {
   lti.NamesAndRoles.getMembers(res.locals.context)
-    .then(members => {
+    .then((members) => {
       console.log(members);
       res.send(members.members);
     })
-    .catch(err => res.status(400).send(err));
+    .catch((err) => res.status(400).send(err));
 });
 
 // Grades routes.
 lti.app.get('/api/grades', (req, res) => {
   lti.Grade.result(res.locals.context)
-    .then(grades => res.status(200).send(grades))
-    .catch(err => {
+    .then((grades) => res.status(200).send(grades))
+    .catch((err) => {
       console.log(err);
       return res.status(400);
     });

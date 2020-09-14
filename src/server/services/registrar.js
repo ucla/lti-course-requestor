@@ -9,7 +9,7 @@ let registrar = {};
 /**
  * Retrieves token from web service.
  *
- * @returns {string}
+ * @returns {string} Token
  */
 async function getToken() {
   registrarDebug('getToken called');
@@ -181,8 +181,8 @@ async function getShortname(offeredTermCode, classSectionID) {
 
       // Find the session that matches the class number.
       let sessionGroup = '';
-      response.classes[0].termSessionGroupCollection.forEach(groupItem => {
-        groupItem.classCollection.forEach(classItem => {
+      response.classes[0].termSessionGroupCollection.forEach((groupItem) => {
+        groupItem.classCollection.forEach((classItem) => {
           if (classItem.classNumber === secNum) {
             sessionGroup = groupItem.termsessionGroupCode;
           }

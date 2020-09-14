@@ -31,11 +31,11 @@ const App = () => {
 
   const setLtikPromise = new Promise((resolve, reject) => {
     getLtikPromise
-      .then(res => {
+      .then((res) => {
         sessionStorage.setItem('ltik', res);
         resolve(res);
       })
-      .catch(err => {
+      .catch((err) => {
         reject(err);
       });
   });
@@ -44,17 +44,17 @@ const App = () => {
 
   const retrieveMembers = () => {
     setLtikPromise
-      .then(ltik => {
+      .then((ltik) => {
         axios
           .get(`/api/members?ltik=${ltik}`)
-          .then(list => {
+          .then((list) => {
             setMembers(list.data);
           })
-          .catch(err => {
+          .catch((err) => {
             console.log(err);
           });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
@@ -78,7 +78,7 @@ const App = () => {
           onClick={() => {
             showUsers(true);
           }}
-          hero={size => <IconUserLine size={size} />}
+          hero={(size) => <IconUserLine size={size} />}
         />
         <Billboard
           margin="auto"
@@ -86,7 +86,7 @@ const App = () => {
           onClick={() => {
             showGrades(true);
           }}
-          hero={size => <IconCheckLine size={size} />}
+          hero={(size) => <IconCheckLine size={size} />}
         />
       </View>
     );
@@ -117,21 +117,21 @@ const UserCenter = ({ members, retrieveMembers, showUsers }) => {
 
   return (
     <View as="div" margin="auto">
-      <CourseRequestForm courses={[]}></CourseRequestForm>
+      <CourseRequestForm courses={[]} />
     </View>
   );
 };
 
 const UserList = ({ members, chooseMember, showUsers }) => {
-  const selectMember = event => {
+  const selectMember = (event) => {
     chooseMember(
-      members.filter(member => member.name === event.target.innerText)[0]
+      members.filter((member) => member.name === event.target.innerText)[0]
     );
   };
 
   let membersElement = <View>Getting members...</View>;
   if (members.length !== 0) {
-    membersElement = members.map(member => (
+    membersElement = members.map((member) => (
       <CondensedButton
         color="primary-inverse"
         display="block"
@@ -187,8 +187,8 @@ const UserPanel = ({ chosenMember }) => {
 const GradingCenter = ({ showGrades, setLtikPromise, members }) => {
   const [grades, setGrades] = React.useState([]);
   const retrieveGrades = () => {
-    setLtikPromise.then(ltik => {
-      axios.get(`/api/grades?ltik=${ltik}`).then(list => {
+    setLtikPromise.then((ltik) => {
+      axios.get(`/api/grades?ltik=${ltik}`).then((list) => {
         console.log(list.data);
         setGrades(list.data);
       });
@@ -208,11 +208,11 @@ const GradingCenter = ({ showGrades, setLtikPromise, members }) => {
           </Table.Row>
         </Table.Head>
         <Table.Body>
-          {grades.map(grade => (
+          {grades.map((grade) => (
             <Table.Row>
               <Table.RowHeader>
                 {
-                  members.filter(member => member.user_id === grade.userId)[0]
+                  members.filter((member) => member.user_id === grade.userId)[0]
                     .name
                 }
               </Table.RowHeader>
@@ -226,7 +226,7 @@ const GradingCenter = ({ showGrades, setLtikPromise, members }) => {
   }
 
   const [scoreGivenStr, giveScore] = useState('');
-  const handleScoreChange = event => {
+  const handleScoreChange = (event) => {
     giveScore(event.target.value);
   };
 
@@ -242,17 +242,17 @@ const GradingCenter = ({ showGrades, setLtikPromise, members }) => {
       gradingProgress: 'FullyGraded',
     };
     setLtikPromise
-      .then(ltik => {
+      .then((ltik) => {
         axios
           .post(`/api/grades?ltik=${ltik}`, grade)
           .then(() => {
             retrieveGrades();
           })
-          .catch(err => {
+          .catch((err) => {
             console.log(err);
           });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
