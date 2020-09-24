@@ -184,7 +184,7 @@ function SelectCompleteForm({ options = [], isGroup = false, onSelect }) {
   return (
     <div>
       <Select
-        renderLabel="Terms auto complete"
+        renderLabel="Term"
         placeholder="Start typing to search..."
         inputValue={inputValue}
         isShowingOptions={isShowingOptions}
