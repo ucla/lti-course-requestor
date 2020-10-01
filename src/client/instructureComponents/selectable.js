@@ -10,10 +10,11 @@ const proptypes = {
 };
 
 /**
- * @param root0
- * @param root0.options
- * @param root0.isDisabled
- * @param root0.onSelect
+ * @param {Array} root0 root0
+ * @param {Array} root0.options options
+ * @param {number} root0.isDisabled isDisabled
+ * @param {number} root0.onSelect onSelect
+ * @returns {object} CustomSelect
  */
 function CustomSelect({ options = [], isDisabled, onSelect }) {
   const [isShowingOptions, setIsShowingOptions] = useState(false);
@@ -39,8 +40,8 @@ function CustomSelect({ options = [], isDisabled, onSelect }) {
 
   const localRef = useRef(null);
 
-  const filterOptions = value =>
-    options.filter(option =>
+  const filterOptions = (value) =>
+    options.filter((option) =>
       option.label.toLowerCase().startsWith(value.toLowerCase())
     );
 
@@ -93,7 +94,7 @@ function CustomSelect({ options = [], isDisabled, onSelect }) {
     border: isShowingOptions && 'solid 1px lightgray',
   });
 
-  const getOptionStyles = option => {
+  const getOptionStyles = (option) => {
     const selected = selectedOptionId === option.id;
     const highlighted = highlightedOptionId === option.id;
     let background = 'transparent';
@@ -112,11 +113,11 @@ function CustomSelect({ options = [], isDisabled, onSelect }) {
     isDisabled
       ? {}
       : {
-          onRequestShowOptions: e => {
+          onRequestShowOptions: () => {
             setIsShowingOptions(true);
             setHighlightedOptionId(filteredOptions[0].id);
           },
-          onRequestHideOptions: e => {
+          onRequestHideOptions: () => {
             const index = getOptionIndex(null, selectedOptionId);
             setIsShowingOptions(false);
             setInputValue(options[index].label);
@@ -165,11 +166,12 @@ function CustomSelect({ options = [], isDisabled, onSelect }) {
         <span
           style={{ display: 'inline-block' }}
           {...getRootProps({
-            ref: el => {
+            ref: (el) => {
               localRef.current = el;
             },
           })}
         >
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label {...getLabelProps()}>Subject Area</label>
           <input
             style={getInputStyles()}
@@ -177,7 +179,7 @@ function CustomSelect({ options = [], isDisabled, onSelect }) {
             {...getTriggerProps({
               type: 'text',
               value: inputValue,
-              onChange: e => {
+              onChange: (e) => {
                 const newOptions = filterOptions(e.target.value);
                 setInputValue(e.target.value);
                 setFilteredOptions(newOptions);
@@ -194,7 +196,7 @@ function CustomSelect({ options = [], isDisabled, onSelect }) {
           />
           <ul style={getListStyles()} {...getListProps()}>
             {isShowingOptions &&
-              filteredOptions.map(option => (
+              filteredOptions.map((option) => (
                 <li
                   key={option.id}
                   style={getOptionStyles(option)}

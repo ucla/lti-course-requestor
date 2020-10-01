@@ -10,7 +10,7 @@ import { ltikPromise } from '../services/ltik';
 import SelectCompleteForm from '../instructureComponents/selectCompleteForm';
 import CustomSelect from '../instructureComponents/selectable';
 
-import CourseRequestForm from '../CourseRequestForm';
+// Import CourseRequestForm from '../CourseRequestForm';
 
 const TOPICS = {
   SUBJECT: 'subject',
@@ -18,8 +18,7 @@ const TOPICS = {
 };
 
 /**
- * @param root0
- * @param root0.test
+ * @returns {object} IndexForm
  */
 function IndexForm() {
   const [terms, setTerms] = useState({});
@@ -33,8 +32,8 @@ function IndexForm() {
     label: 'Fall',
     id: '19F',
   });
-  const [showResults, setShowResults] = useState(true);
-  const [courses, setCourses] = useState([]);
+  // Const [showResults, setShowResults] = useState(true);
+  // const [courses, setCourses] = useState([]);
   const getAllTerms = (setState) => {
     ltikPromise
       .then(
@@ -55,24 +54,24 @@ function IndexForm() {
     // });
   };
 
-  const getAllSessions = () => {
-    ltikPromise
-      .then(
-        (ltik) => {
-          axios.post(`/api/forms/getSessions?ltik=${ltik}`).then((res) => {
-            // TermName = this.state.termName;
-            // Axios.get(`/api/sessions/getSessions?ltik=${ltik}&termSelected=${termName}`)
-            setSessions(res.data);
-          });
-        },
-        (error) => {
-          console.log(error);
-        }
-      )
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  // Const getAllSessions = () => {
+  //   ltikPromise
+  //     .then(
+  //       (ltik) => {
+  //         axios.post(`/api/forms/getSessions?ltik=${ltik}`).then((res) => {
+  //           // TermName = this.state.termName;
+  //           // Axios.get(`/api/sessions/getSessions?ltik=${ltik}&termSelected=${termName}`)
+  //           setSessions(res.data);
+  //         });
+  //       },
+  //       (error) => {
+  //         console.log(error);
+  //       }
+  //     )
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
   // Const updatedTerm = () => ({ selectedTerm });
 
   const getAllSubjectAreas = ({ id }, setState) => {
@@ -214,7 +213,7 @@ function IndexForm() {
           Submit
         </Button>
       </FormFieldGroup>
-      {showResults && <CourseRequestForm courses={courses} />}
+      {/* {showResults && <CourseRequestForm courses={courses} />} */}
     </>
   );
 }

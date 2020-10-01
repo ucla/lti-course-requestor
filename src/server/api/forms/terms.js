@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
     // Res.send(result);
     const { terms = [] } = result;
     const termsData = {};
-    terms.forEach(term => {
+    terms.forEach((term) => {
       const { termCode: id, termName } = term;
       const seasons = termName.split(' ');
       const year = seasons.pop();

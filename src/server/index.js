@@ -30,7 +30,6 @@ lti.onConnect((context, req, res) => {
   return lti.redirect(res, 'http://localhost:3000');
 });
 
-
 // Routes
 const apiRouter = require('./api');
 
@@ -63,7 +62,6 @@ lti.app.post('/api/grades', (req, res) => {
     return res.status(400).send(err);
   }
 });
-
 
 // Routes
 lti.app.use('/api', apiRouter);

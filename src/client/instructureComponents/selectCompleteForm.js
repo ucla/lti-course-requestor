@@ -9,10 +9,11 @@ const proptypes = {
 };
 
 /**
- * @param root0
- * @param root0.options
- * @param root0.isGroup
- * @param root0.onSelect
+ * @param {Array} root0 root0
+ * @param {Array} root0.options options
+ * @param {number} root0.isGroup isGroup
+ * @param {number} root0.onSelect onSelect
+ * @returns {object} SelectCompleteForm
  */
 function SelectCompleteForm({ options = [], isGroup = false, onSelect }) {
   const [inputValue, setInputValue] = useState('');
@@ -24,10 +25,10 @@ function SelectCompleteForm({ options = [], isGroup = false, onSelect }) {
     setFilteredOptions(options);
   }, [options]);
 
-  const getOptionById = queryId => {
+  const getOptionById = (queryId) => {
     if (!isGroup) return options.find(({ id }) => id === queryId);
     let match = null;
-    Object.keys(options).forEach((key, index) => {
+    Object.keys(options).forEach((key) => {
       for (let i = 0; i < options[key].length; i += 1) {
         const option = options[key][i];
         if (queryId === option.id) {
@@ -41,9 +42,9 @@ function SelectCompleteForm({ options = [], isGroup = false, onSelect }) {
     return match;
   };
 
-  const filterOptions = value => {
+  const filterOptions = (value) => {
     if (!isGroup) {
-      return options.filter(option =>
+      return options.filter((option) =>
         option.label.toLowerCase().startsWith(value.toLowerCase())
       );
     }
@@ -51,7 +52,7 @@ function SelectCompleteForm({ options = [], isGroup = false, onSelect }) {
       if (year.startsWith(value)) {
         filteredOptions[year] = terms;
       } else {
-        const filteredTerms = terms.filter(option =>
+        const filteredTerms = terms.filter((option) =>
           option.label.toLowerCase().startsWith(value.toLowerCase())
         );
         if (filteredTerms.length > 0) filteredOptions[year] = filteredTerms;
@@ -125,7 +126,7 @@ function SelectCompleteForm({ options = [], isGroup = false, onSelect }) {
     //
   };
 
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     const { value } = event.target;
     const newOptions = filterOptions(value);
     let newHighlightedOptionId = null;
@@ -146,7 +147,7 @@ function SelectCompleteForm({ options = [], isGroup = false, onSelect }) {
   const renderGroup = () =>
     Object.keys(filteredOptions).map((key, index) => (
       <Select.Group key={index} renderLabel={key}>
-        {filteredOptions[key].map(option => (
+        {filteredOptions[key].map((option) => (
           <Select.Option
             key={option.id}
             id={option.id}
@@ -162,7 +163,7 @@ function SelectCompleteForm({ options = [], isGroup = false, onSelect }) {
   const renderOptions = () => (
     <>
       {filteredOptions.length > 0 ? (
-        filteredOptions.map(option => (
+        filteredOptions.map((option) => (
           <Select.Option
             id={option.id}
             key={option.id}
@@ -188,16 +189,16 @@ function SelectCompleteForm({ options = [], isGroup = false, onSelect }) {
         placeholder="Start typing to search..."
         inputValue={inputValue}
         isShowingOptions={isShowingOptions}
-        onBlur={e => {
+        onBlur={() => {
           handleBlur();
         }}
-        onInputChange={e => {
+        onInputChange={(e) => {
           handleInputChange(e);
         }}
-        onRequestShowOptions={e => {
+        onRequestShowOptions={() => {
           handleShowOptions();
         }}
-        onRequestHideOptions={e => {
+        onRequestHideOptions={() => {
           handleHideOptions();
         }}
         onRequestHighlightOption={(e, { id }) => {
@@ -212,4 +213,5 @@ function SelectCompleteForm({ options = [], isGroup = false, onSelect }) {
     </div>
   );
 }
+SelectCompleteForm.propTypes = proptypes;
 export default SelectCompleteForm;
