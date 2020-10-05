@@ -1287,6 +1287,19 @@
     "@babel/runtime" "^7.9.2"
     "@instructure/console" "^7.2.0"
 
+"@instructure/ui-expandable@^7.2.0":
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/@instructure/ui-expandable/-/ui-expandable-7.2.0.tgz#006a00a29dfe2d8934d68c9fc7d10e29361ac93e"
+  integrity sha512-kTlm/wBNy7rBChtVXNKg0F6wfEAPtm/E9TImE+dnj93KR9bh3qORtL4J7Bv8Vg2//BncV39dz7obfUodeXi1zQ==
+  dependencies:
+    "@babel/runtime" "^7.9.2"
+    "@instructure/ui-prop-types" "^7.2.0"
+    "@instructure/ui-testable" "^7.2.0"
+    "@instructure/ui-themeable" "^7.2.0"
+    "@instructure/ui-utils" "^7.2.0"
+    "@instructure/uid" "^7.2.0"
+    prop-types "^15"
+
 "@instructure/ui-flex@^7.2.0":
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/@instructure/ui-flex/-/ui-flex-7.2.0.tgz#b365de9b77e049e9a641fdb73730bd41e181ab98"
@@ -1385,6 +1398,41 @@
     "@instructure/ui-themeable" "^7.2.0"
     "@instructure/ui-view" "^7.2.0"
     classnames "^2"
+    prop-types "^15"
+
+"@instructure/ui-menu@^7.2.0":
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/@instructure/ui-menu/-/ui-menu-7.2.0.tgz#70d6db093ac8627f05de88b4e549662ad95e7ad6"
+  integrity sha512-8jC45GRPCaq1Ra6pBwvOJmPBiQeLcSX2ulhwxIUg8AWM2CNm/TzQurF6np0DhH5HzjBKZlP+OotCqcYltaNHAA==
+  dependencies:
+    "@babel/runtime" "^7.9.2"
+    "@instructure/console" "^7.2.0"
+    "@instructure/ui-a11y-utils" "^7.2.0"
+    "@instructure/ui-dom-utils" "^7.2.0"
+    "@instructure/ui-icons" "^7.2.0"
+    "@instructure/ui-popover" "^7.2.0"
+    "@instructure/ui-position" "^7.2.0"
+    "@instructure/ui-prop-types" "^7.2.0"
+    "@instructure/ui-react-utils" "^7.2.0"
+    "@instructure/ui-testable" "^7.2.0"
+    "@instructure/ui-themeable" "^7.2.0"
+    "@instructure/ui-utils" "^7.2.0"
+    "@instructure/uid" "^7.2.0"
+    classnames "^2"
+    keycode "^2"
+    prop-types "^15"
+
+"@instructure/ui-motion@^7.2.0":
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/@instructure/ui-motion/-/ui-motion-7.2.0.tgz#5995f8293d2f19220f8321ac424bda08ccb44926"
+  integrity sha512-qUsWcfVtJl/BbMz9jU8QuBzMZSPqphXLmH0HuiMimaIIxlPdsg3ZBNa+U7QkbqTVtUPhtcupPR9QWU1jwDCyrQ==
+  dependencies:
+    "@babel/runtime" "^7.9.2"
+    "@instructure/ui-dom-utils" "^7.2.0"
+    "@instructure/ui-react-utils" "^7.2.0"
+    "@instructure/ui-testable" "^7.2.0"
+    "@instructure/ui-themeable" "^7.2.0"
+    "@instructure/ui-utils" "^7.2.0"
     prop-types "^15"
 
 "@instructure/ui-number-input@^7.2.0":
@@ -1690,6 +1738,29 @@
     "@instructure/ui-stylesheet" "^7.2.0"
     "@instructure/ui-utils" "^7.2.0"
     "@instructure/uid" "^7.2.0"
+    prop-types "^15"
+
+"@instructure/ui-toggle-details@^7.2.0":
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/@instructure/ui-toggle-details/-/ui-toggle-details-7.2.0.tgz#146421b15352eb3e93711edb92864b09deb37e8b"
+  integrity sha512-Ap17wkeF9U+pAwviQzEVwSFE48Iztc2TPkTnelbMQWnZREjgvyCmPkmAinf57fcyd/6txEQS+pVGSRsOY7qmng==
+  dependencies:
+    "@babel/runtime" "^7.9.2"
+    "@instructure/ui-buttons" "^7.2.0"
+    "@instructure/ui-dom-utils" "^7.2.0"
+    "@instructure/ui-expandable" "^7.2.0"
+    "@instructure/ui-flex" "^7.2.0"
+    "@instructure/ui-icons" "^7.2.0"
+    "@instructure/ui-menu" "^7.2.0"
+    "@instructure/ui-motion" "^7.2.0"
+    "@instructure/ui-prop-types" "^7.2.0"
+    "@instructure/ui-react-utils" "^7.2.0"
+    "@instructure/ui-testable" "^7.2.0"
+    "@instructure/ui-themeable" "^7.2.0"
+    "@instructure/ui-utils" "^7.2.0"
+    "@instructure/ui-view" "^7.2.0"
+    "@instructure/uid" "^7.2.0"
+    classnames "^2"
     prop-types "^15"
 
 "@instructure/ui-tooltip@^7.2.0":

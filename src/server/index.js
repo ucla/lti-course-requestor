@@ -30,7 +30,8 @@ lti.onConnect((context, req, res) => {
   return lti.redirect(res, 'http://localhost:3000');
 });
 
-// Routes.
+// Routes
+const apiRouter = require('./api');
 
 // Names and Roles route.
 lti.app.get('/api/members', (req, res) => {
@@ -61,6 +62,9 @@ lti.app.post('/api/grades', (req, res) => {
     return res.status(400).send(err);
   }
 });
+
+// Routes
+lti.app.use('/api', apiRouter);
 
 /**
  * Sets up the LTI tool's database and starts the express server.
