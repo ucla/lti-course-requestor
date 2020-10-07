@@ -138,6 +138,7 @@ function CustomSelect({ options = [], isDisabled, onSelect }) {
           },
           onRequestSelectOption: (e, { id }) => {
             // Here I was passing null for the value of 'options'
+            debugger;
             const index = getOptionIndex(null, id);
             setSelectedOptionId(id);
             setInputValue(filteredOptions[index].label);

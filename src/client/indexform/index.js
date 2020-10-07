@@ -10,7 +10,7 @@ import { ltikPromise } from '../services/ltik';
 import SelectCompleteForm from '../instructureComponents/selectCompleteForm';
 import CustomSelect from '../instructureComponents/selectable';
 
-// Import CourseRequestForm from '../CourseRequestForm';
+import CourseRequestForm from '../CourseRequestForm';
 
 const TOPICS = {
   SUBJECT: 'subject',
@@ -32,8 +32,12 @@ function IndexForm() {
     label: 'Fall',
     id: '19F',
   });
-  // Const [showResults, setShowResults] = useState(true);
-  // const [courses, setCourses] = useState([]);
+  const [selectedSubjArea, setSelectedSubjArea] = useState({
+    id: 'ENGCOMP',
+    value: 'ENGCOMP',
+  });
+  const [showResults, setShowResults] = useState(false);
+  const [courses, setCourses] = useState([]);
   const getAllTerms = (setState) => {
     ltikPromise
       .then(
@@ -96,6 +100,37 @@ function IndexForm() {
       });
   };
 
+  const getAllCourses = ({ id }, { value }, setState) => {
+    ltikPromise
+      .then(
+        (ltik) => {
+          axios
+            .post(`/api/forms/getCourses?ltik=${ltik}`, {
+              termCode: id,
+              subjectAreaCode: value,
+            })
+            // .then((res) =>
+            //   // Second API req.
+            //   axios.get(`/api/forms/getCourseSections?ltik=${ltik}`, {
+            //     termCode: id,
+            //     subjectAreaCode: value,
+            //     // Res.courseCatalogNumber,
+            //     // res.classNumber,
+            //   })
+            // )
+            .then((res) => {
+              setState(res.data);
+            });
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   useEffect(() => {
     getAllTerms(setTerms);
   }, []);
@@ -123,6 +158,8 @@ function IndexForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log('Handling Submit...here!');
+    getAllCourses(selectedTerm, selectedSubjArea, setShowResults);
   };
 
   const handleToggle = (event, expanded) => {
@@ -133,9 +170,12 @@ function IndexForm() {
     console.log(term);
     setSelectedTerm(term);
     setSubjAreas([]);
+    getSavedSubjectAreas();
   };
+
   const onSelectSubjAreas = (subjectarea) => {
     console.log(subjectarea);
+    setSelectedSubjArea(subjectarea);
   };
 
   const onSelectTopicOption = (option) => {
@@ -151,7 +191,9 @@ function IndexForm() {
         colSpacing="medium"
         layout="columns"
         vAlign="top"
-        onSubmit={handleSubmit}
+        // OnSubmit={(e) => {
+        //   handleSubmit(e);
+        // }}
       >
         <div>
           {!isTermsEmpty && (
@@ -180,7 +222,6 @@ function IndexForm() {
         <div>
           <SimpleSelect
             inputValue={topic}
-            // Options={Options}
             renderLabel="Search Criteria"
             onChange={handleTopicChange}
           >
@@ -209,11 +250,17 @@ function IndexForm() {
         <div>
           <CustomSelect options={topicOptions} onSelect={onSelectTopicOption} />
         </div>
-        <Button color="primary" margin="medium" display="block" type="submit">
+        <Button
+          color="primary"
+          margin="medium"
+          display="block"
+          type="submit"
+          onClick={handleSubmit}
+        >
           Submit
         </Button>
       </FormFieldGroup>
-      {/* {showResults && <CourseRequestForm courses={courses} />} */}
+      {showResults && <CourseRequestForm courses={courses} />}
     </>
   );
 }
