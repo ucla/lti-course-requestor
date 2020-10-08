@@ -133,6 +133,7 @@ function IndexForm() {
     console.log(term);
     setSelectedTerm(term);
     setSubjAreas([]);
+    getSavedSubjectAreas();
   };
   const onSelectSubjAreas = (subjectarea) => {
     console.log(subjectarea);
