@@ -10,7 +10,7 @@ import { ltikPromise } from '../services/ltik';
 import SelectCompleteForm from '../instructureComponents/selectCompleteForm';
 import CustomSelect from '../instructureComponents/selectable';
 
-// Import CourseRequestForm from '../CourseRequestForm';
+import CourseRequestForm from '../CourseRequestForm';
 
 const TOPICS = {
   SUBJECT: 'subject',
@@ -29,11 +29,17 @@ function IndexForm() {
   const [topicOptions, setTopicOptions] = useState([]);
   const isTermsEmpty = Object.keys(terms).length === 0;
   const [selectedTerm, setSelectedTerm] = useState({
-    label: 'Fall',
-    id: '19F',
+    label: '',
+    id: '',
   });
-  // Const [showResults, setShowResults] = useState(true);
-  // const [courses, setCourses] = useState([]);
+  const [selectedSubjArea, setSelectedSubjArea] = useState({
+    id: '',
+    value: '',
+  });
+  const [showResults, setShowResults] = useState(false);
+  const [courses, setCourses] = useState([]);
+  const [errorMsg, setErrorMsg] = useState('');
+
   const getAllTerms = (setState) => {
     ltikPromise
       .then(
@@ -49,9 +55,6 @@ function IndexForm() {
       .catch((error) => {
         console.log(error);
       });
-    // .finally(() => {
-    //   getAllSubjectAreas();
-    // });
   };
 
   // Const getAllSessions = () => {
@@ -59,8 +62,6 @@ function IndexForm() {
   //     .then(
   //       (ltik) => {
   //         axios.post(`/api/forms/getSessions?ltik=${ltik}`).then((res) => {
-  //           // TermName = this.state.termName;
-  //           // Axios.get(`/api/sessions/getSessions?ltik=${ltik}&termSelected=${termName}`)
   //           setSessions(res.data);
   //         });
   //       },
@@ -74,8 +75,8 @@ function IndexForm() {
   // };
   // Const updatedTerm = () => ({ selectedTerm });
 
-  const getAllSubjectAreas = ({ id }, setState) => {
-    // Const updatedSelectedTerm = updatedTerm();
+  const getAllSubjectAreas = (term) => {
+    const { id } = term;
     ltikPromise
       .then(
         (ltik) => {
@@ -84,7 +85,7 @@ function IndexForm() {
               termCode: id,
             })
             .then((res) => {
-              setState(res.data);
+              setTopicOptions(res.data);
             });
         },
         (error) => {
@@ -96,6 +97,34 @@ function IndexForm() {
       });
   };
 
+  const getAllCourses = ({ id }, { value }) => {
+    ltikPromise
+      .then(
+        (ltik) => {
+          axios
+            .post(`/api/forms/getCourses?ltik=${ltik}`, {
+              termCode: id,
+              subjectAreaCode: value,
+            })
+            .then((res) => {
+              setCourses(res.data);
+              setShowResults(true);
+            })
+            .catch((err) => {
+              setErrorMsg(err.message);
+            });
+        },
+        (error) => {
+          console.log(error);
+          setErrorMsg(error);
+        }
+      )
+      .catch((error) => {
+        console.log(error);
+        setErrorMsg(error);
+      });
+  };
+
   useEffect(() => {
     getAllTerms(setTerms);
   }, []);
@@ -104,18 +133,18 @@ function IndexForm() {
     setSessions(event.target.value);
   };
 
-  const getSavedSubjectAreas = () => {
+  const getSavedSubjectAreas = (term) => {
     if (subjectareas.length > 0) {
       setTopicOptions(subjectareas);
     } else {
-      getAllSubjectAreas(selectedTerm, setTopicOptions);
+      getAllSubjectAreas(term);
     }
   };
   const handleTopicChange = (event) => {
     const newTopic = event.target.id;
     setTopic(topic);
     if (newTopic === TOPICS.SUBJECT) {
-      getSavedSubjectAreas();
+      getSavedSubjectAreas(selectedTerm);
     } else {
       setTopicOptions([]);
     }
@@ -123,6 +152,11 @@ function IndexForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    // Event.stopPropagation();
+    setCourses([]);
+    setErrorMsg('');
+    setShowResults(false);
+    getAllCourses(selectedTerm, selectedSubjArea);
   };
 
   const handleToggle = (event, expanded) => {
@@ -133,10 +167,11 @@ function IndexForm() {
     console.log(term);
     setSelectedTerm(term);
     setSubjAreas([]);
-    getSavedSubjectAreas();
+    getSavedSubjectAreas(term);
   };
   const onSelectSubjAreas = (subjectarea) => {
     console.log(subjectarea);
+    setSelectedSubjArea(subjectarea);
   };
 
   const onSelectTopicOption = (option) => {
@@ -152,11 +187,11 @@ function IndexForm() {
         colSpacing="medium"
         layout="columns"
         vAlign="top"
-        onSubmit={handleSubmit}
       >
         <div>
           {!isTermsEmpty && (
             <SelectCompleteForm
+              renderLabel="Term"
               options={terms}
               onSelect={onSelectTerms}
               isGroup
@@ -181,7 +216,6 @@ function IndexForm() {
         <div>
           <SimpleSelect
             inputValue={topic}
-            // Options={Options}
             renderLabel="Search Criteria"
             onChange={handleTopicChange}
           >
@@ -210,11 +244,18 @@ function IndexForm() {
         <div>
           <CustomSelect options={topicOptions} onSelect={onSelectTopicOption} />
         </div>
-        <Button color="primary" margin="medium" display="block" type="submit">
+        <Button
+          color="primary"
+          margin="medium"
+          display="block"
+          type="submit"
+          onClick={handleSubmit}
+        >
           Submit
         </Button>
       </FormFieldGroup>
-      {/* {showResults && <CourseRequestForm courses={courses} />} */}
+      {showResults && <CourseRequestForm courses={courses} />}
+      {errorMsg}
     </>
   );
 }

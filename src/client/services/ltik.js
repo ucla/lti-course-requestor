@@ -10,10 +10,15 @@ const getLtikPromise = new Promise((resolve, reject) => {
 
 const ltikPromise = new Promise((resolve, reject) => {
   getLtikPromise
-    .then((res) => {
-      sessionStorage.setItem('ltik', res);
-      resolve(res);
-    })
+    .then(
+      (res) => {
+        sessionStorage.setItem('ltik', res);
+        resolve(res);
+      },
+      (err) => {
+        reject(err);
+      }
+    )
     .catch((err) => {
       reject(err);
     });

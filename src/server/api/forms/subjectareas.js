@@ -5,7 +5,6 @@ const registrar = require('../../services/registrar');
 
 router.post('/', (req, res) => {
   const { termCode = '19F' } = req.body;
-  console.log(termCode);
   (async () => {
     const result = await registrar.call({
       url: '/sis/api/v1/Dictionary/SubjectAreas',

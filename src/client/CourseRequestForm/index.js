@@ -52,7 +52,7 @@ const CourseRequestForm = ({ courses }) => {
   };
 
   const CrossListings = ({ term, courseInfoList }) => {
-    if (courseInfoList.length !== 0) {
+    if (Array.isArray(courseInfoList)) {
       return courseInfoList.map((courseInfo, index) => (
         <Checkbox
           key={index}
@@ -85,143 +85,147 @@ const CourseRequestForm = ({ courses }) => {
     coursesData[index].toBeBuilt = !coursesData[index].toBeBuilt;
     setCoursesData(coursesData);
   };
+  const date = new Date();
+  // Const updatedDate = `${date.getFullYear()}-${}`;
 
-  const courseListings = coursesData.map((course, index) => (
-    <Table.Row key={index}>
-      <Table.Cell
-        theme={
-          classTypeStyling[
-            course.toBeBuilt === true ? course.classType : 'none'
-          ]
-        }
-      >
-        {course.requestID}
-      </Table.Cell>
-      <Table.Cell
-        theme={
-          classTypeStyling[
-            course.toBeBuilt === true ? course.classType : 'none'
-          ]
-        }
-      >
-        {course.offeredTermCode}
-      </Table.Cell>
-      <Table.Cell
-        theme={
-          classTypeStyling[
-            course.toBeBuilt === true ? course.classType : 'none'
-          ]
-        }
-      >
-        {course.classID}
-      </Table.Cell>
-      <Table.Cell
-        theme={
-          classTypeStyling[
-            course.toBeBuilt === true ? course.classType : 'none'
-          ]
-        }
-      >
-        {course.subjectAreaCode}
-      </Table.Cell>
-      <Table.Cell
-        theme={
-          classTypeStyling[
-            course.toBeBuilt === true ? course.classType : 'none'
-          ]
-        }
-      >
-        {`${course.courseCatalogNumberDisplay}-${course.classNumber}`}
-      </Table.Cell>
-      <Table.Cell
-        theme={
-          classTypeStyling[
-            course.toBeBuilt === true ? course.classType : 'none'
-          ]
-        }
-      >
-        <CrossListings
-          term={course.offeredTermCode}
-          courseInfoList={course.crosslistedCourses}
-        />
-        <TextInput width="200px" renderLabel="" />
-        <Button>Add additional Class ID</Button>
-      </Table.Cell>
-      <Table.Cell
-        theme={
-          classTypeStyling[
-            course.toBeBuilt === true ? course.classType : 'none'
-          ]
-        }
-      >
-        {course.timeRequested}
-      </Table.Cell>
-      <Table.Cell
-        theme={
-          classTypeStyling[
-            course.toBeBuilt === true ? course.classType : 'none'
-          ]
-        }
-      >
-        <TextInput width="200px" type="email" renderLabel="" />
-      </Table.Cell>
-      <Table.Cell
-        theme={
-          classTypeStyling[
-            course.toBeBuilt === true ? course.classType : 'none'
-          ]
-        }
-      >
-        {course.status}
-      </Table.Cell>
-      <Table.Cell
-        theme={
-          classTypeStyling[
-            course.toBeBuilt === true ? course.classType : 'none'
-          ]
-        }
-      >
-        <Flex justifyItems="center">
-          <Flex.Item>
-            <SettingCheckbox isChecked={course.emailInstructors} />
-          </Flex.Item>
-        </Flex>
-      </Table.Cell>
-      <Table.Cell
-        theme={
-          classTypeStyling[
-            course.toBeBuilt === true ? course.classType : 'none'
-          ]
-        }
-      >
-        <Flex justifyItems="center">
-          <Flex.Item>
-            <SettingCheckbox isChecked={course.sendUrl} />
-          </Flex.Item>
-        </Flex>
-      </Table.Cell>
-      <Table.Cell
-        theme={
-          classTypeStyling[
-            course.toBeBuilt === true ? course.classType : 'none'
-          ]
-        }
-      >
-        <Flex justifyItems="center">
-          <Flex.Item>
-            <SettingCheckbox
-              isChecked={course.toBeBuilt}
-              onChangeCallback={() => toggleToBeBuilt(index)}
-            />
-          </Flex.Item>
-        </Flex>
-      </Table.Cell>
-    </Table.Row>
-  ));
+  const courseListings = coursesData.map((course, index) =>
+    course.courseList.map((courseCode) => (
+      <Table.Row key={courseCode}>
+        <Table.Cell
+          theme={
+            classTypeStyling[
+              course.toBeBuilt === true ? course.classType : 'none'
+            ]
+          }
+        >
+          {index + 1}
+        </Table.Cell>
+        <Table.Cell
+          theme={
+            classTypeStyling[
+              course.toBeBuilt === true ? course.classType : 'none'
+            ]
+          }
+        >
+          {course.offeredTermCode}
+        </Table.Cell>
+        {/* <Table.Cell
+          theme={
+            classTypeStyling[
+              course.toBeBuilt === true ? course.classType : 'none'
+            ]
+          }
+        >
+          {course.classID}
+        </Table.Cell> */}
+        <Table.Cell
+          theme={
+            classTypeStyling[
+              course.toBeBuilt === true ? course.classType : 'none'
+            ]
+          }
+        >
+          {course.subjectAreaCode}
+        </Table.Cell>
+        <Table.Cell
+          theme={
+            classTypeStyling[
+              course.toBeBuilt === true ? course.classType : 'none'
+            ]
+          }
+        >
+          {courseCode}
+        </Table.Cell>
+        <Table.Cell
+          theme={
+            classTypeStyling[
+              course.toBeBuilt === true ? course.classType : 'none'
+            ]
+          }
+        >
+          <CrossListings
+            term={course.offeredTermCode}
+            courseInfoList={course.crosslistedCourses}
+          />
+          <TextInput width="200px" renderLabel=" " />
+          <Button>Add additional Class ID</Button>
+        </Table.Cell>
+        <Table.Cell
+          theme={
+            classTypeStyling[
+              course.toBeBuilt === true ? course.classType : 'none'
+            ]
+          }
+        >
+          {date.getTime()}
+        </Table.Cell>
+        <Table.Cell
+          theme={
+            classTypeStyling[
+              course.toBeBuilt === true ? course.classType : 'none'
+            ]
+          }
+        >
+          <TextInput width="200px" type="email" renderLabel=" " />
+        </Table.Cell>
+        <Table.Cell
+          theme={
+            classTypeStyling[
+              course.toBeBuilt === true ? course.classType : 'none'
+            ]
+          }
+        >
+          {course.status}
+        </Table.Cell>
+        <Table.Cell
+          theme={
+            classTypeStyling[
+              course.toBeBuilt === true ? course.classType : 'none'
+            ]
+          }
+        >
+          <Flex justifyItems="center">
+            <Flex.Item>
+              <SettingCheckbox isChecked={course.emailInstructors} />
+            </Flex.Item>
+          </Flex>
+        </Table.Cell>
+        <Table.Cell
+          theme={
+            classTypeStyling[
+              course.toBeBuilt === true ? course.classType : 'none'
+            ]
+          }
+        >
+          <Flex justifyItems="center">
+            <Flex.Item>
+              <SettingCheckbox isChecked={course.sendUrl} />
+            </Flex.Item>
+          </Flex>
+        </Table.Cell>
+        <Table.Cell
+          theme={
+            classTypeStyling[
+              course.toBeBuilt === true ? course.classType : 'none'
+            ]
+          }
+        >
+          <Flex justifyItems="center">
+            <Flex.Item>
+              <SettingCheckbox
+                isChecked={course.toBeBuilt}
+                onChangeCallback={() => toggleToBeBuilt(index)}
+              />
+            </Flex.Item>
+          </Flex>
+        </Table.Cell>
+      </Table.Row>
+    ))
+  );
   const courseRequestFormHeaderList = [
     'Request ID',
     'Term',
-    'Class ID',
+    // 'Class ID',
     'Department',
     'Course',
     'Crosslisted Class IDs',
@@ -260,7 +264,11 @@ const CourseRequestForm = ({ courses }) => {
         <Table.Head>
           <Table.Row>
             {courseRequestFormHeaderList.map((colname) => (
-              <Table.ColHeader theme={constants.courseListHeader}>
+              <Table.ColHeader
+                key={colname}
+                id={colname}
+                theme={constants.courseListHeader}
+              >
                 {colname}
               </Table.ColHeader>
             ))}
