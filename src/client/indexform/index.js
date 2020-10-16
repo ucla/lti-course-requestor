@@ -8,7 +8,6 @@ import { ToggleDetails } from '@instructure/ui-toggle-details';
 import { Text } from '@instructure/ui-text';
 import { ltikPromise } from '../services/ltik';
 import SelectCompleteForm from '../instructureComponents/selectCompleteForm';
-import CustomSelect from '../instructureComponents/selectable';
 
 import CourseRequestForm from '../CourseRequestForm';
 
@@ -242,7 +241,11 @@ function IndexForm() {
           </ToggleDetails>
         </div>
         <div>
-          <CustomSelect options={topicOptions} onSelect={onSelectTopicOption} />
+          <SelectCompleteForm
+            renderLabel="Subject Area"
+            options={topicOptions}
+            onSelect={onSelectTopicOption}
+          />
         </div>
         <Button
           color="primary"

@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Select } from '@instructure/ui-select';
 import PropTypes from 'prop-types';
 
 const proptypes = {
   options: PropTypes.any.isRequired,
+  renderLabel: PropTypes.string.isRequired,
   isGroup: PropTypes.bool,
   onSelect: PropTypes.func.isRequired,
 };
@@ -13,9 +14,15 @@ const proptypes = {
  * @param {Array} root0.options options
  * @param {number} root0.isGroup isGroup
  * @param {number} root0.onSelect onSelect
+ * @param {string} root0.renderLabel renderLabel
  * @returns {object} SelectCompleteForm
  */
-function SelectCompleteForm({ options = [], isGroup = false, onSelect }) {
+function SelectCompleteForm({
+  options = [],
+  renderLabel = 'Select',
+  isGroup = false,
+  onSelect,
+}) {
   const [inputValue, setInputValue] = useState('');
   const [isShowingOptions, setIsShowingOptions] = useState(false);
   const [highlightedOptionId, setHighlightedOptionId] = useState(null);
@@ -24,6 +31,8 @@ function SelectCompleteForm({ options = [], isGroup = false, onSelect }) {
   useEffect(() => {
     setFilteredOptions(options);
   }, [options]);
+
+  const localRef = useRef(null);
 
   const getOptionById = (queryId) => {
     if (!isGroup) return options.find(({ id }) => id === queryId);
@@ -160,35 +169,36 @@ function SelectCompleteForm({ options = [], isGroup = false, onSelect }) {
       </Select.Group>
     ));
 
-  const renderOptions = () => (
-    <>
-      {filteredOptions.length > 0 ? (
-        filteredOptions.map((option) => (
-          <Select.Option
-            id={option.id}
-            key={option.id}
-            isHighlighted={option.id === highlightedOptionId}
-            isSelected={option.id === selectedOptionId}
-            isDisabled={option.disabled}
-          >
-            {!option.disabled ? option.label : `${option.label} (unavailable)`}
-          </Select.Option>
-        ))
-      ) : (
+  const renderOptions = () => {
+    const newOptions = filteredOptions.map((option) => (
+      <Select.Option
+        id={option.id}
+        key={option.id}
+        isHighlighted={option.id === highlightedOptionId}
+        isSelected={option.id === selectedOptionId}
+      >
+        {option.label}
+      </Select.Option>
+    ));
+    if (newOptions.length === 0)
+      return (
         <Select.Option id="empty-option" key="empty-option">
           ---
         </Select.Option>
-      )}
-    </>
-  );
+      );
+    return newOptions;
+  };
 
   return (
     <div>
       <Select
-        renderLabel="Term"
+        renderLabel={renderLabel}
         placeholder="Start typing to search..."
         inputValue={inputValue}
         isShowingOptions={isShowingOptions}
+        inputRef={(el) => {
+          localRef.current = el;
+        }}
         onBlur={() => {
           handleBlur();
         }}
