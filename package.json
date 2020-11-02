@@ -37,7 +37,7 @@
     "@instructure/ui-select": "^7.2.4",
     "@instructure/ui-selectable": "^7.2.4",
     "@instructure/ui-simple-select": "^7.2.4",
-    "@instructure/ui-toggle-details": "^7.2.4",
+    "@instructure/ui-toggle-details": "^7.3.0",
     "axios": "^0.21.0",
     "babel-polyfill": "^6.26.0",
     "cors": "^2.8.5",
