@@ -36,7 +36,7 @@
     "@instructure/ui-webpack-config": "^7.2.4",
     "@instructure/ui-select": "^7.2.4",
     "@instructure/ui-selectable": "^7.2.4",
-    "@instructure/ui-simple-select": "^7.2.4",
+    "@instructure/ui-simple-select": "^7.3.0",
     "@instructure/ui-toggle-details": "^7.2.4",
     "axios": "^0.21.0",
     "babel-polyfill": "^6.26.0",
