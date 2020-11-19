@@ -1,4 +1,5 @@
 import axios from 'axios';
+import axiosRetry from 'axios-retry';
 import React, { useState, useEffect } from 'react';
 import { Select } from '@instructure/ui-select';
 import { SimpleSelect } from '@instructure/ui-simple-select';
@@ -6,10 +7,15 @@ import { Button } from '@instructure/ui-buttons';
 import { FormFieldGroup } from '@instructure/ui-form-field';
 import { ToggleDetails } from '@instructure/ui-toggle-details';
 import { Text } from '@instructure/ui-text';
-import { ltikPromise } from '../services/ltik';
+import { getLtik } from '../services/ltik';
 import SelectCompleteForm from '../instructureComponents/selectCompleteForm';
 
 import CourseRequestForm from '../CourseRequestForm';
+import Alert from '../instructureComponents/alert';
+
+import AlertContext from '../Contexts/alertContexts';
+
+axiosRetry(axios);
 
 const TOPICS = {
   SUBJECT: 'subject',
@@ -37,24 +43,7 @@ function IndexForm() {
   });
   const [showResults, setShowResults] = useState(false);
   const [courses, setCourses] = useState([]);
-  const [errorMsg, setErrorMsg] = useState('');
-
-  const getAllTerms = (setState) => {
-    ltikPromise
-      .then(
-        (ltik) => {
-          axios.get(`/api/forms/getTerms?ltik=${ltik}`).then((res) => {
-            setState(res.data);
-          });
-        },
-        (error) => {
-          console.log(error);
-        }
-      )
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  const [error, setError] = useState('');
 
   // Const getAllSessions = () => {
   //   ltikPromise
@@ -74,58 +63,108 @@ function IndexForm() {
   // };
   // Const updatedTerm = () => ({ selectedTerm });
 
+  const getAllTerms = () => {
+    const ltik = getLtik();
+    axios
+      .get(`/api/forms/getTerms?ltik=${ltik}`)
+      .then((res) => {
+        setTerms(res.data);
+        setError(null);
+      })
+      .catch((err) => {
+        if (err.response) {
+          // Client received an error response (5xx, 4xx)
+          setError({
+            err,
+            msg: 'Something went wrong while retrieving Terms...',
+          });
+        } else if (err.request) {
+          // Client never received a response, or request never left
+          setError({
+            err,
+            msg: 'Something went wrong while making request for Terms...',
+          });
+        } else {
+          // Anything else
+          setError({
+            err,
+            msg: 'Hmm.. interesting err!',
+          });
+        }
+      });
+  };
   const getAllSubjectAreas = (term) => {
     const { id } = term;
-    ltikPromise
-      .then(
-        (ltik) => {
-          axios
-            .post(`/api/forms/getSubjectareas?ltik=${ltik}`, {
-              termCode: id,
-            })
-            .then((res) => {
-              setTopicOptions(res.data);
-            });
-        },
-        (error) => {
-          console.log(error);
+    const ltik = getLtik();
+    axios
+      .post(`/api/forms/getSubjectareas?ltik=${ltik}`, {
+        termCode: id,
+      })
+      .then((res) => {
+        setTopicOptions(res.data);
+        setError(null);
+      })
+      .catch((err) => {
+        if (err.response) {
+          // Client received an error response (5xx, 4xx)
+          setError({
+            err,
+            msg: 'Something went wrong while retrieving Subject Areas...',
+          });
+        } else if (err.request) {
+          // Client never received a response, or request never left
+          setError({
+            err,
+            msg:
+              'Something went wrong while making request for Subject Areas...',
+          });
+        } else {
+          // Anything else
+          setError({
+            err,
+            msg: 'Hmm.. interesting err!',
+          });
         }
-      )
-      .catch((error) => {
-        console.log(error);
       });
   };
 
   const getAllCourses = ({ id }, { value }) => {
-    ltikPromise
-      .then(
-        (ltik) => {
-          axios
-            .post(`/api/forms/getCourses?ltik=${ltik}`, {
-              termCode: id,
-              subjectAreaCode: value,
-            })
-            .then((res) => {
-              setCourses(res.data);
-              setShowResults(true);
-            })
-            .catch((err) => {
-              setErrorMsg(err.message);
-            });
-        },
-        (error) => {
-          console.log(error);
-          setErrorMsg(error);
+    const ltik = getLtik();
+    axios
+      .post(`/api/forms/getCourses?ltik=${ltik}`, {
+        termCode: id,
+        subjectAreaCode: value,
+      })
+      .then((res) => {
+        setCourses(res.data);
+        setShowResults(true);
+        setError(null);
+      })
+      .catch((err) => {
+        if (err.response) {
+          // Client received an error response (5xx, 4xx)
+          setError({
+            err,
+            msg: 'Something went wrong while retrieving Courses...',
+          });
+        } else if (err.request) {
+          // Client never received a response, or request never left
+          setError({
+            err,
+            msg: 'Something went wrong while making request for Courses...',
+          });
+        } else {
+          // Anything else
+          setError({
+            err,
+            msg: 'Hmm.. interesting err!',
+          });
         }
-      )
-      .catch((error) => {
-        console.log(error);
-        setErrorMsg(error);
       });
   };
 
   useEffect(() => {
-    getAllTerms(setTerms);
+    getAllTerms();
   }, []);
 
   const handleSessionChange = (event) => {
@@ -153,7 +192,7 @@ function IndexForm() {
     event.preventDefault();
     // Event.stopPropagation();
     setCourses([]);
-    setErrorMsg('');
+    setError(null);
     setShowResults(false);
     getAllCourses(selectedTerm, selectedSubjArea);
   };
@@ -258,7 +297,9 @@ function IndexForm() {
         </Button>
       </FormFieldGroup>
       {showResults && <CourseRequestForm courses={courses} />}
-      {errorMsg}
+      {error && error.msg}
+      <Alert />
+      <AlertContext.Provider value="show">"Test"</AlertContext.Provider>
     </>
   );
 }
