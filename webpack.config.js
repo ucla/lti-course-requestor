@@ -1,7 +1,9 @@
+require('dotenv').config();
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const UiWebPackConfig = require('@instructure/ui-webpack-config');
+const webpack = require('webpack');
 
 const outputDirectory = 'dist';
 
@@ -40,11 +42,11 @@ module.exports = {
     extensions: ['*', '.js', '.jsx'],
   },
   devServer: {
-    port: 3000,
+    port: process.env.CLIENTPORT,
     open: false,
     historyApiFallback: true,
     proxy: {
-      '/api': 'http://localhost:8080',
+      [`${process.env.LTI_APPROUTE}/api`]: `http://localhost:${process.env.SERVERPORT}`,
     },
   },
   resolveLoader: {
@@ -56,5 +58,7 @@ module.exports = {
       template: './public/index.html',
       favicon: './public/favicon.ico',
     }),
+    // Add environmental variables to expose to React frontend.
+    new webpack.EnvironmentPlugin(['LTI_APPROUTE']),
   ],
 };
