@@ -12,6 +12,14 @@ if (process.env.MODE === 'production') {
     cookies: { secure: false },
   };
 }
+
+const approute = process.env.LTI_APPROUTE ? process.env.LTI_APPROUTE : '';
+options.appRoute = approute;
+options.loginRoute = `${approute}/login`;
+options.keysetRoute = `${approute}/keys`;
+options.invalidTokenRoute = `${approute}/invalidtoken`;
+options.sessionTimeoutRoute = `${approute}/sessiontimeout`;
+
 lti.setup(
   process.env.LTI_KEY,
   // Setting up database configurations
@@ -27,14 +35,14 @@ lti.onConnect((context, req, res) => {
   if (process.env.MODE === 'production') {
     return res.sendFile(path.join(__dirname, '../../dist/index.html'));
   }
-  return lti.redirect(res, 'http://localhost:3000');
+  return lti.redirect(res, `http://localhost:${process.env.CLIENTPORT}`);
 });
 
 // Routes
 const apiRouter = require('./api');
 
 // Names and Roles route.
-lti.app.get('/api/members', (req, res) => {
+lti.app.get(`${process.env.LTI_APPROUTE}/api/members`, (req, res) => {
   lti.NamesAndRoles.getMembers(res.locals.context)
     .then((members) => {
       console.log(members);
@@ -44,7 +52,7 @@ lti.app.get('/api/members', (req, res) => {
 });
 
 // Grades routes.
-lti.app.get('/api/grades', (req, res) => {
+lti.app.get(`${process.env.LTI_APPROUTE}/api/grades`, (req, res) => {
   lti.Grade.result(res.locals.context)
     .then((grades) => res.status(200).send(grades))
     .catch((err) => {
@@ -53,7 +61,7 @@ lti.app.get('/api/grades', (req, res) => {
     });
 });
 
-lti.app.post('/api/grades', (req, res) => {
+lti.app.post(`${process.env.LTI_APPROUTE}/api/grades`, (req, res) => {
   try {
     lti.Grade.ScorePublish(res.locals.context, req.body);
     return res.status(200).send(req.body);
@@ -64,7 +72,7 @@ lti.app.post('/api/grades', (req, res) => {
 });
 
 // Routes
-lti.app.use('/api', apiRouter);
+lti.app.use(`${process.env.LTI_APPROUTE}/api`, apiRouter);
 
 /**
  * Sets up the LTI tool's database and starts the express server.
@@ -73,7 +81,8 @@ lti.app.use('/api', apiRouter);
  */
 async function setup() {
   // Deploying provider, connecting to the database and starting express server.
-  await lti.deploy({ port: 8080 });
+  const port = process.env.SERVERPORT ? process.env.SERVERPORT : 8080;
+  await lti.deploy({ port });
 
   // Register platform, if needed.
   await lti.registerPlatform({
