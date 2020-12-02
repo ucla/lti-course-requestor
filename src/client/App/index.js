@@ -2,7 +2,6 @@
 import React from 'react';
 // Before mounting your React application:
 import theme from '@instructure/canvas-theme';
-import './app.css';
 
 import IndexForm from '../indexform';
 
