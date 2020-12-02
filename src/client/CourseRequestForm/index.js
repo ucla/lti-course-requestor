@@ -9,6 +9,7 @@ import { Flex } from '@instructure/ui-flex';
 import { FormFieldGroup } from '@instructure/ui-form-field';
 import { Table } from '@instructure/ui-table';
 import { TextInput } from '@instructure/ui-text-input';
+import moment from 'moment';
 
 import * as constants from '../styling_constants';
 
@@ -73,7 +74,12 @@ const CourseRequestForm = ({ courses }) => {
         onChange={onChangeCallback}
       />
     ) : (
-      <Checkbox label="" size="small" onChange={onChangeCallback} />
+      <Checkbox
+        label=""
+        size="small"
+        onChange={onChangeCallback}
+        defaultChecked
+      />
     );
   const classTypeStyling = {
     ugrad: constants.ugradRow,
@@ -85,13 +91,13 @@ const CourseRequestForm = ({ courses }) => {
     coursesData[index].toBeBuilt = !coursesData[index].toBeBuilt;
     setCoursesData(coursesData);
   };
-  const date = new Date();
-  // Const updatedDate = `${date.getFullYear()}-${}`;
+
+  const markedDate = moment(new Date()).format('YYYY-MM-DD h:mm A');
 
   const courseListings = coursesData.map((course, index) =>
     course.courseList.map((courseCode) => (
       <Table.Row key={courseCode}>
-        <Table.Cell
+        {/* <Table.Cell
           theme={
             classTypeStyling[
               course.toBeBuilt === true ? course.classType : 'none'
@@ -99,7 +105,7 @@ const CourseRequestForm = ({ courses }) => {
           }
         >
           {index + 1}
-        </Table.Cell>
+        </Table.Cell> */}
         <Table.Cell
           theme={
             classTypeStyling[
@@ -157,7 +163,7 @@ const CourseRequestForm = ({ courses }) => {
             ]
           }
         >
-          {date.getTime()}
+          {markedDate}
         </Table.Cell>
         <Table.Cell
           theme={
@@ -175,7 +181,7 @@ const CourseRequestForm = ({ courses }) => {
             ]
           }
         >
-          {course.status}
+          {course.status ? course.status : 'To be built'}
         </Table.Cell>
         <Table.Cell
           theme={
@@ -223,18 +229,18 @@ const CourseRequestForm = ({ courses }) => {
     ))
   );
   const courseRequestFormHeaderList = [
-    'Request ID',
+    // 'Request ID',
     'Term',
     // 'Class ID',
     'Department',
     'Course',
     'Crosslisted Class IDs',
-    'Time Requested',
-    'Requestor Email',
+    'Time requested',
+    'Requestor email',
     'Status',
-    'Email Instructors',
-    'Send Class Link to MyUCLA',
-    'To Be Built',
+    'Email instructors',
+    'Do NOT send URL to MyUCLA',
+    'To be built',
   ];
   return (
     <FormFieldGroup label="" description="">
