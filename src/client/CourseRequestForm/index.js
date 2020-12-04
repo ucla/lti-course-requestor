@@ -73,7 +73,12 @@ const CourseRequestForm = ({ courses }) => {
         onChange={onChangeCallback}
       />
     ) : (
-      <Checkbox label="" size="small" onChange={onChangeCallback} />
+      <Checkbox
+        label=""
+        size="small"
+        onChange={onChangeCallback}
+        defaultChecked
+      />
     );
   const classTypeStyling = {
     ugrad: constants.ugradRow,
@@ -85,8 +90,8 @@ const CourseRequestForm = ({ courses }) => {
     coursesData[index].toBeBuilt = !coursesData[index].toBeBuilt;
     setCoursesData(coursesData);
   };
-  const date = new Date();
-  // Const updatedDate = `${date.getFullYear()}-${}`;
+
+  const currentDate = new Date().toLocaleString();
 
   const courseListings = coursesData.map((course, index) =>
     course.courseList.map((courseCode) => (
@@ -157,7 +162,7 @@ const CourseRequestForm = ({ courses }) => {
             ]
           }
         >
-          {date.getTime()}
+          {currentDate}
         </Table.Cell>
         <Table.Cell
           theme={
@@ -175,7 +180,7 @@ const CourseRequestForm = ({ courses }) => {
             ]
           }
         >
-          {course.status}
+          {course.status ? course.status : 'To be built'}
         </Table.Cell>
         <Table.Cell
           theme={
@@ -229,12 +234,12 @@ const CourseRequestForm = ({ courses }) => {
     'Department',
     'Course',
     'Crosslisted Class IDs',
-    'Time Requested',
-    'Requestor Email',
+    'Time requested',
+    'Requestor email',
     'Status',
-    'Email Instructors',
-    'Send Class Link to MyUCLA',
-    'To Be Built',
+    'Email instructors',
+    'Do NOT send URL to MyUCLA',
+    'To be built',
   ];
   return (
     <FormFieldGroup label="" description="">
