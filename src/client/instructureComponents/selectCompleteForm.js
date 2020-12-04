@@ -54,7 +54,7 @@ function SelectCompleteForm({
   const filterOptions = (value) => {
     if (!isGroup) {
       return options.filter((option) =>
-        option.label.toLowerCase().startsWith(value.toLowerCase())
+        option.label.toLowerCase().includes(value.toLowerCase())
       );
     }
     Object.entries(options).forEach(([year, terms]) => {
