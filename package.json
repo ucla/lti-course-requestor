@@ -31,7 +31,7 @@
     "@instructure/ui-table": "^7.3.0",
     "@instructure/ui-text": "^7.3.0",
     "@instructure/ui-text-input": "^7.3.0",
-    "@instructure/ui-themeable": "^7.3.0",
+    "@instructure/ui-themeable": "^7.3.1",
     "@instructure/ui-view": "^7.3.0",
     "@instructure/ui-webpack-config": "^7.3.0",
     "@instructure/ui-select": "^7.3.0",
