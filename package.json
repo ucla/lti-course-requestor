@@ -35,7 +35,7 @@
     "@instructure/ui-view": "^7.3.0",
     "@instructure/ui-webpack-config": "^7.3.0",
     "@instructure/ui-select": "^7.3.0",
-    "@instructure/ui-selectable": "^7.3.0",
+    "@instructure/ui-selectable": "^7.3.2",
     "@instructure/ui-simple-select": "^7.3.0",
     "@instructure/ui-toggle-details": "^7.3.0",
     "axios": "^0.21.0",
