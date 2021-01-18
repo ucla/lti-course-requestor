@@ -43,7 +43,7 @@
     "cors": "^2.8.5",
     "debug": "^4.2.0",
     "dotenv": "^8.2.0",
-    "eslint-plugin-jsdoc": "^30.7.8",
+    "eslint-plugin-jsdoc": "^31.0.6",
     "express": "^4.16.3",
     "ltijs": "^5.4.7",
     "prop-types": "^15.7.2",
