@@ -21,7 +21,7 @@
     "@instructure/ui-babel-preset": "^7.3.0",
     "@instructure/ui-billboard": "^7.3.0",
     "@instructure/ui-buttons": "^7.3.0",
-    "@instructure/ui-checkbox": "^7.3.0",
+    "@instructure/ui-checkbox": "^7.3.4",
     "@instructure/ui-flex": "^7.3.0",
     "@instructure/ui-form-field": "^7.3.0",
     "@instructure/ui-heading": "^7.3.0",
