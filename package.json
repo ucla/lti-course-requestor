@@ -38,7 +38,7 @@
     "@instructure/ui-selectable": "^7.3.4",
     "@instructure/ui-simple-select": "^7.3.4",
     "@instructure/ui-toggle-details": "^7.3.4",
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "babel-polyfill": "^6.26.0",
     "cors": "^2.8.5",
     "debug": "^4.2.0",
