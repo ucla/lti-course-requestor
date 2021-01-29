@@ -26,6 +26,7 @@ router.post('/', (req, res, err) => {
         const courseList = [];
         const {
           offeredTermCode,
+          courseCatalogNumber,
           courseCatalogNumberDisplay,
           termSessionGroupCollection,
           subjectAreaCode,
@@ -38,7 +39,12 @@ router.post('/', (req, res, err) => {
             );
           })
         );
-        newResult.push({ offeredTermCode, subjectAreaCode, courseList });
+        newResult.push({
+          offeredTermCode,
+          subjectAreaCode,
+          courseList,
+          courseCatalogNumber,
+        });
       });
 
       res.send(newResult);

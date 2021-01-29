@@ -20,36 +20,46 @@ const CourseRequestForm = ({ courses }) => {
   const handleEmailToggle = () => {
     toggleEmail(!emailToggleValue);
   };
+
+  const [gradSelected, setGradSelected] = useState(true);
+  const [ugradSelected, setUgradSelected] = useState(true);
+  const [tutSelected, setTutSelected] = useState(true);
+  const [tobeBuiltCheckedIds, setTobeBuiltCheckedIds] = useState(new Set());
+
+  const getCourseType = (courseCatalogNumber, courseCode) => {
+    let themeCls = '';
+
+    if (courseCatalogNumber >= 200) {
+      if (
+        (gradSelected && !tobeBuiltCheckedIds.has(courseCode)) ||
+        (!gradSelected && tobeBuiltCheckedIds.has(courseCode))
+      ) {
+        themeCls = 'grad';
+      }
+    }
+    if (courseCatalogNumber < 200) {
+      if (
+        (ugradSelected && !tobeBuiltCheckedIds.has(courseCode)) ||
+        (!ugradSelected && tobeBuiltCheckedIds.has(courseCode))
+      ) {
+        themeCls = 'ugrad';
+      }
+    }
+    return themeCls;
+  };
+
+  const handleCheckboxGroup = (values) => {
+    setGradSelected(values.includes('grad'));
+    setUgradSelected(values.includes('ugrad'));
+    setTutSelected(values.includes('tut'));
+    setTobeBuiltCheckedIds(new Set());
+  };
+
   const [classTypeFilter, setClassTypeFilter] = useState([
     'ugrad',
     'grad',
     'tut',
   ]);
-  const handleClassTypeToggle = (value) => {
-    // These need to be XOR because we want to change the to-be-built status ONLY IF the status of that particular type of class changed
-    const ugradFlag = value.includes('ugrad')
-      ? !classTypeFilter.includes('ugrad')
-      : classTypeFilter.includes('ugrad');
-    const gradFlag = value.includes('grad')
-      ? !classTypeFilter.includes('grad')
-      : classTypeFilter.includes('grad');
-    const tutFlag = value.includes('tut')
-      ? !classTypeFilter.includes('tut')
-      : classTypeFilter.includes('tut');
-    coursesData.forEach((element, i) => {
-      if (ugradFlag && coursesData[i].classType === 'ugrad') {
-        coursesData[i].toBeBuilt =
-          value.includes('ugrad') && !classTypeFilter.includes('ugrad');
-      } else if (gradFlag && coursesData[i].classType === 'grad') {
-        coursesData[i].toBeBuilt =
-          value.includes('grad') && !classTypeFilter.includes('grad');
-      } else if (tutFlag && coursesData[i].classType === 'tut') {
-        coursesData[i].toBeBuilt =
-          value.includes('tut') && !classTypeFilter.includes('tut');
-      }
-    });
-    setClassTypeFilter(value);
-  };
 
   const CrossListings = ({ term, courseInfoList }) => {
     if (Array.isArray(courseInfoList)) {
@@ -73,12 +83,7 @@ const CourseRequestForm = ({ courses }) => {
         onChange={onChangeCallback}
       />
     ) : (
-      <Checkbox
-        label=""
-        size="small"
-        onChange={onChangeCallback}
-        defaultChecked
-      />
+      <Checkbox label="" size="small" onChange={onChangeCallback} />
     );
   const classTypeStyling = {
     ugrad: constants.ugradRow,
@@ -86,35 +91,37 @@ const CourseRequestForm = ({ courses }) => {
     tut: constants.tutRow,
     none: constants.unselectedRow,
   };
-  const toggleToBeBuilt = (index) => {
-    coursesData[index].toBeBuilt = !coursesData[index].toBeBuilt;
-    setCoursesData(coursesData);
+  const toggleToBeBuilt = (courseCode) => {
+    const copy = new Set(tobeBuiltCheckedIds);
+    if (copy.has(courseCode)) {
+      copy.delete(courseCode);
+    } else {
+      copy.add(courseCode);
+    }
+
+    setTobeBuiltCheckedIds(copy);
   };
 
   const currentDate = new Date().toLocaleString();
 
   const courseListings = coursesData.map((course, index) =>
-    course.courseList.map((courseCode) => (
-      <Table.Row key={courseCode}>
-        <Table.Cell
-          theme={
-            classTypeStyling[
-              course.toBeBuilt === true ? course.classType : 'none'
-            ]
-          }
-        >
-          {index + 1}
-        </Table.Cell>
-        <Table.Cell
-          theme={
-            classTypeStyling[
-              course.toBeBuilt === true ? course.classType : 'none'
-            ]
-          }
-        >
-          {course.offeredTermCode}
-        </Table.Cell>
-        {/* <Table.Cell
+    course.courseList.map((courseCode) => {
+      const type = getCourseType(
+        course.courseCatalogNumber.substring(0, 4),
+        courseCode
+      );
+      return (
+        <Table.Row key={courseCode}>
+          <Table.Cell
+            theme={classTypeStyling[type]}
+            // Theme={classTypeStyling.getCourseType(course.courseCatalogNumber)}
+          >
+            {index + 1}
+          </Table.Cell>
+          <Table.Cell theme={classTypeStyling[type]}>
+            {course.offeredTermCode}
+          </Table.Cell>
+          {/* <Table.Cell
           theme={
             classTypeStyling[
               course.toBeBuilt === true ? course.classType : 'none'
@@ -123,110 +130,54 @@ const CourseRequestForm = ({ courses }) => {
         >
           {course.classID}
         </Table.Cell> */}
-        <Table.Cell
-          theme={
-            classTypeStyling[
-              course.toBeBuilt === true ? course.classType : 'none'
-            ]
-          }
-        >
-          {course.subjectAreaCode}
-        </Table.Cell>
-        <Table.Cell
-          theme={
-            classTypeStyling[
-              course.toBeBuilt === true ? course.classType : 'none'
-            ]
-          }
-        >
-          {courseCode}
-        </Table.Cell>
-        <Table.Cell
-          theme={
-            classTypeStyling[
-              course.toBeBuilt === true ? course.classType : 'none'
-            ]
-          }
-        >
-          <CrossListings
-            term={course.offeredTermCode}
-            courseInfoList={course.crosslistedCourses}
-          />
-          <TextInput width="200px" renderLabel=" " />
-          <Button>Add additional Class ID</Button>
-        </Table.Cell>
-        <Table.Cell
-          theme={
-            classTypeStyling[
-              course.toBeBuilt === true ? course.classType : 'none'
-            ]
-          }
-        >
-          {currentDate}
-        </Table.Cell>
-        <Table.Cell
-          theme={
-            classTypeStyling[
-              course.toBeBuilt === true ? course.classType : 'none'
-            ]
-          }
-        >
-          <TextInput width="200px" type="email" renderLabel=" " />
-        </Table.Cell>
-        <Table.Cell
-          theme={
-            classTypeStyling[
-              course.toBeBuilt === true ? course.classType : 'none'
-            ]
-          }
-        >
-          {course.status ? course.status : 'To be built'}
-        </Table.Cell>
-        <Table.Cell
-          theme={
-            classTypeStyling[
-              course.toBeBuilt === true ? course.classType : 'none'
-            ]
-          }
-        >
-          <Flex justifyItems="center">
-            <Flex.Item>
-              <SettingCheckbox isChecked={course.emailInstructors} />
-            </Flex.Item>
-          </Flex>
-        </Table.Cell>
-        <Table.Cell
-          theme={
-            classTypeStyling[
-              course.toBeBuilt === true ? course.classType : 'none'
-            ]
-          }
-        >
-          <Flex justifyItems="center">
-            <Flex.Item>
-              <SettingCheckbox isChecked={course.sendUrl} />
-            </Flex.Item>
-          </Flex>
-        </Table.Cell>
-        <Table.Cell
-          theme={
-            classTypeStyling[
-              course.toBeBuilt === true ? course.classType : 'none'
-            ]
-          }
-        >
-          <Flex justifyItems="center">
-            <Flex.Item>
-              <SettingCheckbox
-                isChecked={course.toBeBuilt}
-                onChangeCallback={() => toggleToBeBuilt(index)}
-              />
-            </Flex.Item>
-          </Flex>
-        </Table.Cell>
-      </Table.Row>
-    ))
+          <Table.Cell theme={classTypeStyling[type]}>
+            {course.subjectAreaCode}
+          </Table.Cell>
+          <Table.Cell theme={classTypeStyling[type]}>{courseCode}</Table.Cell>
+          <Table.Cell theme={classTypeStyling[type]}>
+            <CrossListings
+              term={course.offeredTermCode}
+              courseInfoList={course.crosslistedCourses}
+            />
+            <TextInput width="200px" renderLabel=" " />
+            <Button>Add additional Class ID</Button>
+          </Table.Cell>
+          <Table.Cell theme={classTypeStyling[type]}>{currentDate}</Table.Cell>
+          <Table.Cell theme={classTypeStyling[type]}>
+            <TextInput width="200px" type="email" renderLabel=" " />
+          </Table.Cell>
+          <Table.Cell theme={classTypeStyling[type]}>
+            {course.status ? course.status : 'To be built'}
+          </Table.Cell>
+          <Table.Cell theme={classTypeStyling[type]}>
+            <Flex justifyItems="center">
+              <Flex.Item>
+                <SettingCheckbox isChecked={course.emailInstructors} />
+              </Flex.Item>
+            </Flex>
+          </Table.Cell>
+          <Table.Cell theme={classTypeStyling[type]}>
+            <Flex justifyItems="center">
+              <Flex.Item>
+                <SettingCheckbox isChecked={course.sendUrl} />
+              </Flex.Item>
+            </Flex>
+          </Table.Cell>
+          <Table.Cell theme={classTypeStyling[type]}>
+            <Flex justifyItems="center">
+              <Flex.Item>
+                <SettingCheckbox
+                  isChecked={type}
+                  onChangeCallback={() => toggleToBeBuilt(courseCode)}
+                />
+              </Flex.Item>
+            </Flex>
+          </Table.Cell>
+        </Table.Row>
+      );
+    })
   );
+
   const courseRequestFormHeaderList = [
     'Request ID',
     'Term',
@@ -259,7 +210,7 @@ const CourseRequestForm = ({ courses }) => {
         defaultValue={classTypeFilter}
         name="buildfilters"
         size="small"
-        onChange={(value) => handleClassTypeToggle(value)}
+        onChange={(value) => handleCheckboxGroup(value)}
       >
         <Checkbox label="ugrad" value="ugrad" />
         <Checkbox label="grad" value="grad" />
