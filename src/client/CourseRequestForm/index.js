@@ -15,10 +15,24 @@ import * as constants from '../styling_constants';
 theme.use();
 
 const CourseRequestForm = ({ courses }) => {
-  const [emailToggleValue, toggleEmail] = useState(false);
+  const [emailToggleValue, setEmailtoggleValue] = useState(false);
+  const [emailCheckbox, setEmailCheckbox] = useState(new Set());
   const [coursesData, setCoursesData] = useState(courses);
+
   const handleEmailToggle = () => {
-    toggleEmail(!emailToggleValue);
+    setEmailtoggleValue(!emailToggleValue);
+    setEmailCheckbox(new Set());
+  };
+
+  const toggleEmailInstr = (code) => {
+    const copy = new Set(emailCheckbox);
+    if (copy.has(code)) {
+      copy.delete(code);
+    } else {
+      copy.add(code);
+    }
+
+    setEmailCheckbox(copy);
   };
 
   const [gradSelected, setGradSelected] = useState(true);
@@ -110,6 +124,10 @@ const CourseRequestForm = ({ courses }) => {
         course.courseCatalogNumber.substring(0, 4),
         courseCode
       );
+
+      course.emailInstructors =
+        (emailToggleValue && !emailCheckbox.has(courseCode)) ||
+        (!emailToggleValue && emailCheckbox.has(courseCode));
       return (
         <Table.Row key={courseCode}>
           <Table.Cell
@@ -152,7 +170,10 @@ const CourseRequestForm = ({ courses }) => {
           <Table.Cell theme={classTypeStyling[type]}>
             <Flex justifyItems="center">
               <Flex.Item>
-                <SettingCheckbox isChecked={course.emailInstructors} />
+                <SettingCheckbox
+                  isChecked={course.emailInstructors}
+                  onChangeCallback={() => toggleEmailInstr(courseCode)}
+                />
               </Flex.Item>
             </Flex>
           </Table.Cell>
