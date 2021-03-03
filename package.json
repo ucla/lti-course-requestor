@@ -18,7 +18,6 @@
   "license": "BSD-2",
   "dependencies": {
     "@instructure/canvas-theme": "^7.3.4",
-    "@instructure/ui-babel-preset": "^7.3.4",
     "@instructure/ui-billboard": "^7.3.4",
     "@instructure/ui-buttons": "^7.3.4",
     "@instructure/ui-checkbox": "^7.3.4",
