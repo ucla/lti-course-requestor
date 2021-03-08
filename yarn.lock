@@ -1120,26 +1120,26 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@instructure/babel-plugin-themeable-styles@^7.4.0":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@instructure/babel-plugin-themeable-styles/-/babel-plugin-themeable-styles-7.4.0.tgz#ab0c6a97e363756e4fc10f02aefb851ec86e8327"
-  integrity sha512-DxnPvNQEmEFE7MozwyvLoMnI92NAanInvaXHlxjDv0AsW8Xt1x6gciS3mtR+s70znyzqoKjODVJfrpajhRg10g==
+"@instructure/babel-plugin-themeable-styles@^7.4.1":
+  version "7.4.1"
+  resolved "https://registry.yarnpkg.com/@instructure/babel-plugin-themeable-styles/-/babel-plugin-themeable-styles-7.4.1.tgz#e520a9443601b88a32fb493302048813a3104fa3"
+  integrity sha512-9IX98j4Ov1ZoA4UFZTSgriULFQWsY68fwzSvvxy8577ueSqaXHUsPGIzuZAJqduA5FY/iXrWVbXvxMVbR2c8Jw==
   dependencies:
     "@babel/template" "^7.8.6"
-    "@instructure/config-loader" "^7.4.0"
-    "@instructure/pkg-utils" "^7.4.0"
-    "@instructure/postcss-themeable-styles" "^7.4.0"
-    "@instructure/ui-postcss-config" "^7.4.0"
+    "@instructure/config-loader" "^7.4.1"
+    "@instructure/pkg-utils" "^7.4.1"
+    "@instructure/postcss-themeable-styles" "^7.4.1"
+    "@instructure/ui-postcss-config" "^7.4.1"
     css-modules-require-hook "^4.2.3"
     loader-utils "^1.2.3"
     postcss "^7"
     postcss-modules "^1.4.1"
     postcss-reporter "^6.0.1"
 
-"@instructure/babel-plugin-transform-imports@^7.4.0":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@instructure/babel-plugin-transform-imports/-/babel-plugin-transform-imports-7.4.0.tgz#b7adc295655fd8c221659bbec9044c2c55f9382f"
-  integrity sha512-zqi5toMnYT/NLPUCFxzMQ6svWqYOZHAncI/+SWsBAK7zuV01jOwVVScL4fWU8Bt4bP0dNgA8OLSL+VbFqu6I6A==
+"@instructure/babel-plugin-transform-imports@^7.4.1":
+  version "7.4.1"
+  resolved "https://registry.yarnpkg.com/@instructure/babel-plugin-transform-imports/-/babel-plugin-transform-imports-7.4.1.tgz#c42bb807cf1e9657cb4c5424311ed789639200f4"
+  integrity sha512-GH3kcO1vp1BUmlTu9EGLKle/1O2PZK1fUNLDcXqBvO/IemIvbNHSaMnMQR9a1++MIG96+AUra4PN1cbWkBmD3Q==
   dependencies:
     globby "^10.0.1"
 
@@ -1147,6 +1147,11 @@
   version "7.4.0"
   resolved "https://registry.yarnpkg.com/@instructure/browserslist-config-instui/-/browserslist-config-instui-7.4.0.tgz#145f2f7410d2782b974c34776b1623cc191c9869"
   integrity sha512-F/+Kj+DCbpe1w0xw0cu3frF+Hs5dlfw2dPGfts85+ZlzZyc9fZvZitobENx4/60F/ImXa/KHCihhBC0ThH7JWg==
+
+"@instructure/browserslist-config-instui@^7.4.1":
+  version "7.4.1"
+  resolved "https://registry.yarnpkg.com/@instructure/browserslist-config-instui/-/browserslist-config-instui-7.4.1.tgz#95d7d01e11abc6c3153e8e9f79fb10a0841f7812"
+  integrity sha512-N2X56qg8gkBRz7IbNjbN0ELmFU1j6j++Y+0WrGZR7yNHppfgNzyf4dCHV6TNVoL0DdJg+odUV9buADuv+xNWAQ==
 
 "@instructure/canvas-theme@^7.4.0":
   version "7.4.0"
@@ -1157,10 +1162,10 @@
     "@instructure/ui-theme-tokens" "^7.4.0"
     "@instructure/ui-themeable" "^7.4.0"
 
-"@instructure/command-utils@^7.4.0":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@instructure/command-utils/-/command-utils-7.4.0.tgz#70799b291b4291e3177a2126465f49ee5e9b17f6"
-  integrity sha512-GXA2TpjdU8CaI5duoULxU5FoQsL/FqYEJtBrk6BgfHJAfcfpBbQrlYH48szZHrcZybLZhjy/6rasPaFBB7XnHA==
+"@instructure/command-utils@^7.4.1":
+  version "7.4.1"
+  resolved "https://registry.yarnpkg.com/@instructure/command-utils/-/command-utils-7.4.1.tgz#1c9f029d3c5afcf6cd64a261f75d7da6cfebc9c4"
+  integrity sha512-E+b4sgUjG43hZIxYapAuX0RIw1biPKVRBhxWsHdtgHEjXEa741CzDvKEWfpnygAR5GAcIO3GhbSq1/qzat2Raw==
   dependencies:
     chalk "^2.4.2"
     concurrently "^4.1.2"
@@ -1168,10 +1173,10 @@
     execa "^2.0.4"
     which "^1.3.1"
 
-"@instructure/config-loader@^7.4.0":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@instructure/config-loader/-/config-loader-7.4.0.tgz#17d0c0dd9169703bd97443fa8e83b56442a02c5b"
-  integrity sha512-0hqpHwnHXvfL6VS0IgAmBP8l8gPzktML1mCHmj+0xMJN86FnSWWlXxg44FLu/G9WZJxzRbhigniQTmm4uYl/dA==
+"@instructure/config-loader@^7.4.0", "@instructure/config-loader@^7.4.1":
+  version "7.4.1"
+  resolved "https://registry.yarnpkg.com/@instructure/config-loader/-/config-loader-7.4.1.tgz#6dc5b95e8956516fbd3ac6b7e6f46f60a64d623c"
+  integrity sha512-jV+wRbKbM3KfTNOgGPFROzK45gXpmu1D6prwcXnK4QjhG2NWZ3GyufsmSHfJDADScFUI0nG03ulg6E5BVwCsVQ==
 
 "@instructure/console@^7.4.0":
   version "7.4.0"
@@ -1189,12 +1194,12 @@
   dependencies:
     "@babel/runtime" "^7.9.2"
 
-"@instructure/pkg-utils@^7.4.0":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@instructure/pkg-utils/-/pkg-utils-7.4.0.tgz#b2c0ab48ebc0f41dfb612c3cf0a20853837a188c"
-  integrity sha512-t1PZGdYZGGkQ2A6GxOB0MfK5zc7RkCil3S4brUakALxYDh+q0wczRbEayOJEvNoBmb9QAvdD335+yhnopDbfHg==
+"@instructure/pkg-utils@^7.4.1":
+  version "7.4.1"
+  resolved "https://registry.yarnpkg.com/@instructure/pkg-utils/-/pkg-utils-7.4.1.tgz#680ff23318f25cf6327c7b4308bbbc8da6153123"
+  integrity sha512-zRTJ9z6SQlceZrAenXtt54LwrT8tL9KzwYsPP5Ip6cp92agyCHylmNp/IJMKUt4/8eH3FAD6MsTGoE0dlSkUQw==
   dependencies:
-    "@instructure/command-utils" "^7.4.0"
+    "@instructure/command-utils" "^7.4.1"
     "@lerna/package" "^3"
     read-pkg-up "^6.0.0"
 
@@ -1202,6 +1207,13 @@
   version "7.4.0"
   resolved "https://registry.yarnpkg.com/@instructure/postcss-themeable-styles/-/postcss-themeable-styles-7.4.0.tgz#a8d1127d133c751705f6ac932ac68900c2fb941d"
   integrity sha512-wQpjRzLkRG4bJLsNnqKh2Bnh3vHtZevaLR9CwL8vtEm7Jw4qMnC3tfNZK5UwqA/KuxOzm1nzv1TthlKOdWa29Q==
+  dependencies:
+    postcss "^7"
+
+"@instructure/postcss-themeable-styles@^7.4.1":
+  version "7.4.1"
+  resolved "https://registry.yarnpkg.com/@instructure/postcss-themeable-styles/-/postcss-themeable-styles-7.4.1.tgz#8335ec09d745b15a02cfa18bfeec3ba43eedb357"
+  integrity sha512-L/d15crRTSbcdhMs3fW0wcMagP4mwu+rqumB/7dvPq4pp5uoj9gcVYmQ8CEwuiCtZ/qDD2MMjLlBdhFWmO0wSA==
   dependencies:
     postcss "^7"
 
@@ -1236,10 +1248,10 @@
     keycode "^2"
     prop-types "^15"
 
-"@instructure/ui-babel-preset@^7.4.0":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@instructure/ui-babel-preset/-/ui-babel-preset-7.4.0.tgz#16a6aced75aefd0191b6bff865de68a5357077ca"
-  integrity sha512-24v8yjzZ91bmLBgKwvtxUiHe6yv2Q+yTrZJKGApO3xYYAGSQsmI4XsVsm/+t4odgCuDQ9FbQesBLb6u5BHxZuQ==
+"@instructure/ui-babel-preset@^7.4.1":
+  version "7.4.1"
+  resolved "https://registry.yarnpkg.com/@instructure/ui-babel-preset/-/ui-babel-preset-7.4.1.tgz#dd39e307fec3c492dfbefa463f835b0ff0fa7f2a"
+  integrity sha512-hNLHeCz/wonGIk12dK4WZvnfrDZXnilLrF5PlwVAB48/k51PyZWuR7MIP2zoNickGn7AkaX5uK5igXJE4i6z1g==
   dependencies:
     "@babel/core" "^7.12.10"
     "@babel/plugin-proposal-class-properties" "^7.8.3"
@@ -1256,11 +1268,11 @@
     "@babel/preset-env" "^7.9.5"
     "@babel/preset-react" "^7.9.4"
     "@babel/runtime" "^7.12.5"
-    "@instructure/babel-plugin-themeable-styles" "^7.4.0"
-    "@instructure/babel-plugin-transform-imports" "^7.4.0"
-    "@instructure/browserslist-config-instui" "^7.4.0"
-    "@instructure/config-loader" "^7.4.0"
-    "@instructure/ui-postcss-config" "^7.4.0"
+    "@instructure/babel-plugin-themeable-styles" "^7.4.1"
+    "@instructure/babel-plugin-transform-imports" "^7.4.1"
+    "@instructure/browserslist-config-instui" "^7.4.1"
+    "@instructure/config-loader" "^7.4.1"
+    "@instructure/ui-postcss-config" "^7.4.1"
     babel-loader "^8.1.0"
     babel-plugin-add-import-extension "^1.4.3"
     babel-plugin-dynamic-import-node "^2.3.0"
@@ -1338,13 +1350,13 @@
     "@babel/runtime" "^7.9.2"
     tinycolor2 "^1.4.1"
 
-"@instructure/ui-component-examples@^7.4.0":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@instructure/ui-component-examples/-/ui-component-examples-7.4.0.tgz#2129b84803d12f535b2ca582f63d703cc4ffd864"
-  integrity sha512-2bzFR9RSOHr1NlvGHyCgi2YVuwqpriDYliKTq6kja7KjfygVlPtb7+EmMCMneEVWvqJU981Fj5JHA1neYSBmsw==
+"@instructure/ui-component-examples@^7.4.1":
+  version "7.4.1"
+  resolved "https://registry.yarnpkg.com/@instructure/ui-component-examples/-/ui-component-examples-7.4.1.tgz#6de0b06f91ccac68c7f14aa4f9060cdc0f861ea0"
+  integrity sha512-Yr1DyEVU8po8H1DQqN+NrdN9DJwbfrT2X9tl+9Blxdm/wAFSQLNti8uNuiUk+UKFR6njleQz5htk+6zKnyDqKA==
   dependencies:
-    "@instructure/config-loader" "^7.4.0"
-    "@instructure/uid" "^7.4.0"
+    "@instructure/config-loader" "^7.4.1"
+    "@instructure/uid" "^7.4.1"
     loader-utils "^1.2.3"
     react-docgen "^4"
 
@@ -1630,6 +1642,27 @@
     postcss-reporter "^6.0.1"
     postcss-simple-vars "^5.0.1"
 
+"@instructure/ui-postcss-config@^7.4.1":
+  version "7.4.1"
+  resolved "https://registry.yarnpkg.com/@instructure/ui-postcss-config/-/ui-postcss-config-7.4.1.tgz#ff09f1835f0c131368d158a82db40d10df329ab1"
+  integrity sha512-OBWXxufYckUf4q+mFuruQno8TaqG60KHdkO69N2BXzd7bKukSI3gdmTq+vKN1wluvJ117u9/+k1rpWJR6wphyw==
+  dependencies:
+    "@instructure/browserslist-config-instui" "^7.4.1"
+    "@instructure/config-loader" "^7.4.1"
+    "@instructure/postcss-themeable-styles" "^7.4.1"
+    autoprefixer "^9.6.1"
+    cssnano-preset-default "^4"
+    postcss "^7"
+    postcss-bidirection "^2.6.0"
+    postcss-custom-properties "^9.0.2"
+    postcss-initial "^3.0.0"
+    postcss-input-range "4.0.0"
+    postcss-mixins "^6.2.2"
+    postcss-nested "^4.1.2"
+    postcss-nesting "^7.0.1"
+    postcss-reporter "^6.0.1"
+    postcss-simple-vars "^5.0.1"
+
 "@instructure/ui-prop-types@^7.4.0":
   version "7.4.0"
   resolved "https://registry.yarnpkg.com/@instructure/ui-prop-types/-/ui-prop-types-7.4.0.tgz#88999f706b1e93575e7d6ac9086b01062a36379d"
@@ -1897,15 +1930,15 @@
     classnames "^2"
     prop-types "^15"
 
-"@instructure/ui-webpack-config@^7.4.0":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@instructure/ui-webpack-config/-/ui-webpack-config-7.4.0.tgz#2c2387cb92a62738d643a41a3e27444468d0d368"
-  integrity sha512-JrsJWylrIMT917sbsdczDJft2kDCh84SLCZwrqzwu6/Mauktd1lpK2ldNNsAkRSshZVAVjxn6BWDpE3tPe/iJw==
+"@instructure/ui-webpack-config@^7.4.1":
+  version "7.4.1"
+  resolved "https://registry.yarnpkg.com/@instructure/ui-webpack-config/-/ui-webpack-config-7.4.1.tgz#7be14375341d749677ed4bd880853543f76e13e7"
+  integrity sha512-x8D5KjqnpAKtjc1Cv9A5ho0sJj1+PotpMctKorEziU3jBeW5xrNCsk/pZ+WztU6z4Tl8JsfxYgXoMSmXn3QzUw==
   dependencies:
-    "@instructure/babel-plugin-themeable-styles" "^7.4.0"
-    "@instructure/config-loader" "^7.4.0"
-    "@instructure/ui-babel-preset" "^7.4.0"
-    "@instructure/ui-component-examples" "^7.4.0"
+    "@instructure/babel-plugin-themeable-styles" "^7.4.1"
+    "@instructure/config-loader" "^7.4.1"
+    "@instructure/ui-babel-preset" "^7.4.1"
+    "@instructure/ui-component-examples" "^7.4.1"
     css-loader "^3.2.0"
     dotenv "^8.1.0"
     eslint-loader "^3.0.0"
@@ -1924,6 +1957,13 @@
   version "7.4.0"
   resolved "https://registry.yarnpkg.com/@instructure/uid/-/uid-7.4.0.tgz#0bf2eb117e9eed2bf5be6f11422b5702202efb66"
   integrity sha512-gJfu7IJU6vWz16zKrVZl8pyInulvL2SMSwQK5oE57FGWHAGLATkwAX5P0IssqXrc1NfBM18cyYH7+OmBT/kBqQ==
+  dependencies:
+    "@babel/runtime" "^7.9.2"
+
+"@instructure/uid@^7.4.1":
+  version "7.4.1"
+  resolved "https://registry.yarnpkg.com/@instructure/uid/-/uid-7.4.1.tgz#9358507c9aa46702e8e58282a02ca367878a87a0"
+  integrity sha512-Nc0C/O4IJEQkeW+HJ3liIcwA2xldbJYNH7fRt/JaQA1T1YyfpgLNrdDkACB0lSei95zyku8s8OJELSdT3KwzUA==
   dependencies:
     "@babel/runtime" "^7.9.2"
 
