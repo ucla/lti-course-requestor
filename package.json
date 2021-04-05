@@ -32,7 +32,7 @@
     "@instructure/ui-simple-select": "^7.4.3",
     "@instructure/ui-table": "^7.4.3",
     "@instructure/ui-text": "^7.4.3",
-    "@instructure/ui-text-input": "^7.4.3",
+    "@instructure/ui-text-input": "^8.0.0",
     "@instructure/ui-themeable": "^7.4.3",
     "@instructure/ui-toggle-details": "^7.4.3",
     "@instructure/ui-view": "^7.4.3",
