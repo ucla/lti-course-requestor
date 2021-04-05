@@ -17,7 +17,7 @@
   "author": "UC Regents",
   "license": "BSD-2",
   "dependencies": {
-    "@instructure/canvas-theme": "^7.4.3",
+    "@instructure/canvas-theme": "^8.0.0",
     "@instructure/ui-billboard": "^7.4.3",
     "@instructure/ui-buttons": "^7.4.3",
     "@instructure/ui-checkbox": "^7.4.3",
