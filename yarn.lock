@@ -1143,10 +1143,10 @@
   dependencies:
     globby "^10.0.1"
 
-"@instructure/browserslist-config-instui@^7.4.3":
-  version "7.4.3"
-  resolved "https://registry.yarnpkg.com/@instructure/browserslist-config-instui/-/browserslist-config-instui-7.4.3.tgz#527ef5ba4fd5c7a02ab587c28fd77872bb7ab2b8"
-  integrity sha512-ar0+ylhSKs6Chdw+JqmB5XqRSGAEjVRvYKyBl01HgdQA4tPiTnMeB6yk3q2Ov5WpUHCHugdXN9lHWUNCWrDApg==
+"@instructure/browserslist-config-instui@^7.4.3", "@instructure/browserslist-config-instui@^7.5.1":
+  version "7.5.1"
+  resolved "https://registry.yarnpkg.com/@instructure/browserslist-config-instui/-/browserslist-config-instui-7.5.1.tgz#1a4c42d197c72cd42f1b9a0b7c8d059b85f473ce"
+  integrity sha512-IAk2qgueCMuL2LIKjAlOEoLmdk2UEJwHuJ9RGqITw7OHgsil9isP90S7e155VZ3bxn9NnrF+ZLKQl/prDYekeQ==
 
 "@instructure/canvas-theme@^7.4.3":
   version "7.4.3"
@@ -1168,10 +1168,10 @@
     execa "^2.0.4"
     which "^1.3.1"
 
-"@instructure/config-loader@^7.4.3":
-  version "7.4.3"
-  resolved "https://registry.yarnpkg.com/@instructure/config-loader/-/config-loader-7.4.3.tgz#4ccf46f1c9e51b2dca3c0c7f23c69ba6fc594e68"
-  integrity sha512-d12B2EmJMKp7kRWfZHsIStbWOT+0h1r074JHCjHKbbXggTgGObxYXj9tIkBLb8AvNFAn5Weyr3gawYJDpkLy3A==
+"@instructure/config-loader@^7.4.3", "@instructure/config-loader@^7.5.1":
+  version "7.5.1"
+  resolved "https://registry.yarnpkg.com/@instructure/config-loader/-/config-loader-7.5.1.tgz#4502e2f90c370667261d2e94e5996e6b72f7ebfc"
+  integrity sha512-OUVNc3PN0mawgbwKVeSr6YrwgDatL/crRPPDLeRCcT5qJRlT1qeXLNwEN/ROW1b+R5nDW0+D2treugB/nNx8wQ==
 
 "@instructure/console@^7.4.3":
   version "7.4.3"
@@ -1198,10 +1198,10 @@
     "@lerna/package" "^3"
     read-pkg-up "^6.0.0"
 
-"@instructure/postcss-themeable-styles@^7.4.3":
-  version "7.4.3"
-  resolved "https://registry.yarnpkg.com/@instructure/postcss-themeable-styles/-/postcss-themeable-styles-7.4.3.tgz#512df73f37a542451fd80a8ee8b57b18148d765f"
-  integrity sha512-ROXVjnPqEcqqEDJWWvrOj9FIckjR9SoVGWAZbGM26KolhCqAA+2m5CAAZXxUVRKV/8Bk4yahEU8IsP0T0WoBtQ==
+"@instructure/postcss-themeable-styles@^7.4.3", "@instructure/postcss-themeable-styles@^7.5.1":
+  version "7.5.1"
+  resolved "https://registry.yarnpkg.com/@instructure/postcss-themeable-styles/-/postcss-themeable-styles-7.5.1.tgz#114b4afd6843708fcfc26662a22e8b05ef716333"
+  integrity sha512-+OMvKnLz6DQ1ym/6YCwIWpffssVPM+AW6L3FoLTwoSnROrQVE8Ka9KOvuOzhyUKDkiK9H2UAOrutUcabBWgUNg==
   dependencies:
     postcss "^7"
 
@@ -1609,14 +1609,14 @@
     classnames "^2"
     prop-types "^15"
 
-"@instructure/ui-postcss-config@^7.4.3":
-  version "7.4.3"
-  resolved "https://registry.yarnpkg.com/@instructure/ui-postcss-config/-/ui-postcss-config-7.4.3.tgz#a5413534a944a27ae71df39f0967c5c815016ca7"
-  integrity sha512-UC53R76q2D7M09xn9m54qKJyPMKpbfJarYQIn3T+ZnwijRfoVqigfbsy0JYl7exNWa19bU0EdkyyLOqINfppFw==
+"@instructure/ui-postcss-config@^7.4.3", "@instructure/ui-postcss-config@^7.5.1":
+  version "7.5.1"
+  resolved "https://registry.yarnpkg.com/@instructure/ui-postcss-config/-/ui-postcss-config-7.5.1.tgz#efa8e9a7efb10363a0a901abdbe2b5e6f22e7b93"
+  integrity sha512-7dm5ML4YQTR9qtLptKU//wm1LF6zi1U1PnB5TAHv9hyGruvcx/Q+2Gs11kXV9a2CQtvbZ3/2A2lxB/58B/uBhw==
   dependencies:
-    "@instructure/browserslist-config-instui" "^7.4.3"
-    "@instructure/config-loader" "^7.4.3"
-    "@instructure/postcss-themeable-styles" "^7.4.3"
+    "@instructure/browserslist-config-instui" "^7.5.1"
+    "@instructure/config-loader" "^7.5.1"
+    "@instructure/postcss-themeable-styles" "^7.5.1"
     autoprefixer "^9.6.1"
     cssnano-preset-default "^4"
     postcss "^7"
