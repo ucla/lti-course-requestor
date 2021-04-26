@@ -1034,10 +1034,10 @@
     core-js-pure "^3.0.0"
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.1", "@babel/runtime@^7.12.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
-  version "7.12.5"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.5.tgz#410e7e487441e1b360c29be715d870d9b985882e"
-  integrity sha512-plcc+hbExy3McchJCEQG3knOsuh3HH+Prx1P6cLIkET/0dLuQDEnrT+s27Axgc9bqfsmNUNHfscgMUdBpC9xfg==
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.1", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.10", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
+  version "7.13.17"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.13.17.tgz#8966d1fc9593bf848602f0662d6b4d0069e3a7ec"
+  integrity sha512-NCdgJEelPTSh+FEFylhnP1ylq848l1z9t9N0j1Lfbcw0+KXGjsTvUmkxy+voLLXB5SOKMbLLx4jxYliGrYQseA==
   dependencies:
     regenerator-runtime "^0.13.4"
 
@@ -1148,14 +1148,13 @@
   resolved "https://registry.yarnpkg.com/@instructure/browserslist-config-instui/-/browserslist-config-instui-7.4.3.tgz#527ef5ba4fd5c7a02ab587c28fd77872bb7ab2b8"
   integrity sha512-ar0+ylhSKs6Chdw+JqmB5XqRSGAEjVRvYKyBl01HgdQA4tPiTnMeB6yk3q2Ov5WpUHCHugdXN9lHWUNCWrDApg==
 
-"@instructure/canvas-theme@^7.4.3":
-  version "7.4.3"
-  resolved "https://registry.yarnpkg.com/@instructure/canvas-theme/-/canvas-theme-7.4.3.tgz#da9b5c01af8d50fdf73893d87eedae9b3d50d587"
-  integrity sha512-g62iZqmX+HntnwwdvzwT3hR1wYAWgNAruNiBW3K2j+lDLHVU2HGeo7cIZytlyrQsyyLYJWua/3PtoSEv/sWh9w==
+"@instructure/canvas-theme@^8.2.1":
+  version "8.2.1"
+  resolved "https://registry.yarnpkg.com/@instructure/canvas-theme/-/canvas-theme-8.2.1.tgz#4fa37c7c9bcc41ee6a16a862d9939c82d72d016d"
+  integrity sha512-fmuzZpaernI7P7gOXtG9IaeRGdnRGQVZr4gNR/ftRZyR61/R3IrTxZKel1DQaryBNYQ2LHxIuEFMeGQUSi8svQ==
   dependencies:
-    "@babel/runtime" "^7.9.2"
-    "@instructure/ui-theme-tokens" "^7.4.3"
-    "@instructure/ui-themeable" "^7.4.3"
+    "@babel/runtime" "^7.13.10"
+    "@instructure/ui-theme-tokens" "^8.2.1"
 
 "@instructure/command-utils@^7.4.3":
   version "7.4.3"
@@ -1805,13 +1804,12 @@
     classnames "^2"
     prop-types "^15"
 
-"@instructure/ui-theme-tokens@^7.4.3":
-  version "7.4.3"
-  resolved "https://registry.yarnpkg.com/@instructure/ui-theme-tokens/-/ui-theme-tokens-7.4.3.tgz#ef2b394dfdaa73268a917ff6218bc0056d22f37e"
-  integrity sha512-8NXKIgKy9qhFcSe5of6huE4tlpCE4L7Li6Rz2SFcemg15f8LSQHjjHdi3FkZipkvNUeHVdWwenS0IdQFAJ9oCQ==
+"@instructure/ui-theme-tokens@^8.2.1":
+  version "8.2.1"
+  resolved "https://registry.yarnpkg.com/@instructure/ui-theme-tokens/-/ui-theme-tokens-8.2.1.tgz#cb900d5489c4242ae16a42c79d65693c545ef337"
+  integrity sha512-Geqw4D0+rGKjeKqkvfCNixL6nUucweu8WGo3XCc9u4mQXnsaaF80BfVnzyoRaUzTfQJ+nO8X2p5R/3EHzUXLSw==
   dependencies:
-    "@babel/runtime" "^7.9.2"
-    "@instructure/ui-themeable" "^7.4.3"
+    "@babel/runtime" "^7.13.10"
 
 "@instructure/ui-themeable@^7.4.3":
   version "7.4.3"
