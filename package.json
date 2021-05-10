@@ -30,7 +30,7 @@
     "@instructure/ui-select": "^7.4.3",
     "@instructure/ui-selectable": "^7.4.3",
     "@instructure/ui-simple-select": "^7.4.3",
-    "@instructure/ui-table": "^7.4.3",
+    "@instructure/ui-table": "^8.3.0",
     "@instructure/ui-text": "^7.4.3",
     "@instructure/ui-text-input": "^7.4.3",
     "@instructure/ui-themeable": "^7.4.3",
