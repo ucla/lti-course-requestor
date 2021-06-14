@@ -24,7 +24,7 @@
     "@instructure/ui-flex": "^7.4.3",
     "@instructure/ui-form-field": "^7.4.3",
     "@instructure/ui-heading": "^7.4.3",
-    "@instructure/ui-icons": "^7.4.3",
+    "@instructure/ui-icons": "^8.5.0",
     "@instructure/ui-number-input": "^7.4.3",
     "@instructure/ui-postcss-config": "^7.4.3",
     "@instructure/ui-select": "^7.4.3",
